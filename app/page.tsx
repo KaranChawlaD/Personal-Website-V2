@@ -107,7 +107,7 @@ export default function PersonalWebsite() {
       company: "University of Ottawa",
       period: "2024",
       description:
-        "Assisted Bruce Lab and the Canadian Robotics and Artificial Intelligence Ethics Design Lab (CRAiEDL). Developed a user interface to conduct nickel electrodeposition for Fuel Cell Electric Vehicles (FCEV). Characterized DJI’s Robomaster S1 to simulate the negative effects of a lethal autonomous weapon system.",
+        "Assisted Bruce Lab and the Canadian Robotics and Artificial Intelligence Ethics Design Lab (CRAiEDL). Developed a user interface to conduct nickel electrodeposition for Fuel Cell Electric Vehicles (FCEV). Characterized DJI's Robomaster S1 to simulate the negative effects of a lethal autonomous weapon system.",
     },
     {
       title: "YIPI Student",
@@ -154,9 +154,9 @@ export default function PersonalWebsite() {
                   About Me
                 </h2>
                 <p className="text-text/80 dark:text-text/80 leading-relaxed mb-6">
-                  Hey! I'm Karan, an incoming Engineering Science student at the University of Toronto.
-                  I'm highly passionate about robots as an FRC Alumni! In my free time,
-                  you'll find me at the gym getting a workout or working on various robots.
+                  Hey! I&apos;m Karan, an incoming Engineering Science student at the University of Toronto.
+                  I&apos;m highly passionate about robots as an FRC Alumni! In my free time,
+                  you&apos;ll find me at the gym getting a workout or working on various robots.
                   Feel free to take time to explore some of my experiences and projects in the tech industry,
                   and contact me with any opportunities or questions!
                 </p>
@@ -287,8 +287,8 @@ export default function PersonalWebsite() {
                     className="text-text/80 dark:text-text/80 text-center mb-8 animate-fade-in"
                     style={{ animationDelay: "200ms" }}
                   >
-                    I'm always interested in new opportunities and
-                    collaborations. Feel free to reach out if you'd like to work
+                    I&apos;m always interested in new opportunities and
+                    collaborations. Feel free to reach out if you&apos;d like to work
                     together!
                   </p>
 
