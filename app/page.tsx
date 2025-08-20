@@ -16,6 +16,9 @@ import {
   Briefcase,
   Code,
   MessageCircle,
+  X,
+  TwitterIcon,
+  Instagram,
 } from "lucide-react";
 
 export default function PersonalWebsite() {
@@ -294,9 +297,9 @@ export default function PersonalWebsite() {
 
                   <div className="space-y-4">
                     {[
-                      { icon: Mail, text: "karan.chawlad@gmail.com" },
+                      { icon: Mail, text: "karan.chawlad@gmail.com", href: "mailto:karan.chawlad@gmail.com" },
 
-                      { icon: MapPin, text: "Toronto, Canada" },
+                      { icon: MapPin, text: "Toronto, Canada", href: "https://www.utoronto.ca/" },
                     ].map((item, index) => (
                       <div
                         key={index}
@@ -304,7 +307,7 @@ export default function PersonalWebsite() {
                         style={{ animationDelay: `${400 + index * 100}ms` }}
                       >
                         <item.icon className="w-5 h-5 text-primary dark:text-primary" />
-                        <span>{item.text}</span>
+                        <a href={item.href} target="blank" className="hover:underline decoration-primary"><span>{item.text}</span></a>
                       </div>
                     ))}
                   </div>
@@ -316,6 +319,7 @@ export default function PersonalWebsite() {
                         Icon: Linkedin,
                         href: "https://linkedin.com/in/karan-chawla-dora",
                       },
+                      { Icon: Instagram, href: "https://www.instagram.com/_karan.chawla"}
                     ].map(({ Icon, href }, index) => (
                       <Button
                         key={index}
