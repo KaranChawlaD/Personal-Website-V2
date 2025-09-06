@@ -157,13 +157,18 @@ export default function PersonalWebsite() {
                   About Me
                 </h2>
                 <p className="text-text/80 dark:text-text/80 leading-relaxed mb-6">
-                  Hey! I&apos;m Karan, an incoming Engineering Science student
-                  at the University of Toronto. I&apos;m highly passionate about
-                  robots as an FRC Alumni! In my free time, you&apos;ll find me
-                  at the gym getting a workout or working on various robots.
-                  Feel free to take time to explore some of my experiences and
-                  projects in the tech industry, and contact me with any
-                  opportunities or questions!
+                  I&apos;m Karan Chawla, a first-year Engineering Science
+                  student at the University of Toronto interested in robotics,
+                  computing, and how technology can be used to solve real-world
+                  problems. I&apos;ve been involved in robotics competitions,
+                  hackathons, and side projects that mix hardware and software,
+                  and I enjoy learning through collaboration and
+                  experimentation. Outside of classes, I like building
+                  communities around STEM and exploring new challenges that push
+                  me to think in creative and practical ways. Feel free to take
+                  time to explore some of my experiences and projects in the
+                  tech industry, and contact me with any opportunities or
+                  questions!
                 </p>
                 <div>
                   <h3 className="text-lg font-semibold text-text dark:text-text mb-3">
