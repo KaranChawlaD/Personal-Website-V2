@@ -67,10 +67,17 @@ export default function PersonalWebsite() {
     "Arduino",
     "Tailwind CSS",
     "Flask",
-    "HTML/CSS/JS",
+    "HTML/CSS",
     "CAD",
     "WPILib",
     "Matplotlib",
+    "SQL",
+    "Express.js",
+    "FastAPI",
+    "Git",
+    "MATLAB",
+    "pandas",
+    "NumPy"
   ];
 
   const projects = [
