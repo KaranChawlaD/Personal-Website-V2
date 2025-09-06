@@ -106,25 +106,25 @@ export default function PersonalWebsite() {
 
   const experience = [
     {
-      title: "Team Captain (Prev. Software Lead)",
+      title: "FIRST Robotics Competition — Robotics Team Captain & Software Lead",
       company: "FIRST Robotics Competition",
       period: "2021 - 2025",
       description:
-        "Lead a team of 90+ high school students to compete at a provincial level. Expanded the organization to create robotics teams for elementary students. Qualified for World Championships 2023 and Finalists at Provincial Championship twice.",
+        "I led a community highschool robotics team, where I guided a group of students through the process of designing, building, and programming competition robots. My focus was on software, where I worked on both autonomous and teleoperated systems, experimenting with techniques like computer vision and control theory. Beyond the technical side, this role taught me how to lead a large team, mentor younger students, and balance strategy with collaboration. Helped expand the organization to create robotics teams for elementary students. Qualified for World Championships 2023 and Finalists at Provincial Championship twice.",
     },
     {
-      title: "Robotics Research Lab Assistant",
+      title: "Bruce Lab — Software Lab Assistant",
       company: "University of Ottawa",
       period: "2024",
       description:
-        "Assisted Bruce Lab and the Canadian Robotics and Artificial Intelligence Ethics Design Lab (CRAiEDL). Developed a user interface to conduct nickel electrodeposition for Fuel Cell Electric Vehicles (FCEV). Characterized DJI's Robomaster S1 to simulate the negative effects of a lethal autonomous weapon system.",
+        "During my time at Bruce Lab, I worked on applying control systems and creating a GUI with the purpose of advancing fuel cell research in hydrogen production for Fuel Cell Electric Vehicles. I combined programming with hands-on hardware work, building tools that made experiments more efficient and reliable. The experience gave me a chance to bridge theory with application while working closely with researchers in an academic environment.",
     },
     {
-      title: "YIPI Student",
-      company: "Youth in Police Initiative",
-      period: "2023 - 2024",
+      title: "Canadian Robotics & AI Ethics Design Lab — Research Assistant",
+      company: "University of Ottawa",
+      period: "2024",
       description:
-        "Represented the Ottawa Police’s Youth Team. Volunteered at a local Boys and Girls Club 4 hours/week.  Participated in Ottawa Police workshops and lectures. Worked in the community to support and represent the Ottawa Police’s commitment.",
+        "At CRAIEDL, I supported research on robotics and AI focused on the negative effects of Lethal Autonomous Weapon Systems by modeling DJI's robotic systems in simulation and experimenting with computer vision. I enjoyed the opportunity to work in a setting where technical problem-solving connected directly with bigger questions about ethics and responsibility in emerging technologies. The experience gave me a new perspective on how engineering choices can shape the way technology is used in society.",
     },
   ];
 
