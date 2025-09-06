@@ -157,11 +157,13 @@ export default function PersonalWebsite() {
                   About Me
                 </h2>
                 <p className="text-text/80 dark:text-text/80 leading-relaxed mb-6">
-                  Hey! I&apos;m Karan, an incoming Engineering Science student at the University of Toronto.
-                  I&apos;m highly passionate about robots as an FRC Alumni! In my free time,
-                  you&apos;ll find me at the gym getting a workout or working on various robots.
-                  Feel free to take time to explore some of my experiences and projects in the tech industry,
-                  and contact me with any opportunities or questions!
+                  Hey! I&apos;m Karan, an incoming Engineering Science student
+                  at the University of Toronto. I&apos;m highly passionate about
+                  robots as an FRC Alumni! In my free time, you&apos;ll find me
+                  at the gym getting a workout or working on various robots.
+                  Feel free to take time to explore some of my experiences and
+                  projects in the tech industry, and contact me with any
+                  opportunities or questions!
                 </p>
                 <div>
                   <h3 className="text-lg font-semibold text-text dark:text-text mb-3">
@@ -291,15 +293,23 @@ export default function PersonalWebsite() {
                     style={{ animationDelay: "200ms" }}
                   >
                     I&apos;m always interested in new opportunities and
-                    collaborations. Feel free to reach out if you&apos;d like to work
-                    together!
+                    collaborations. Feel free to reach out if you&apos;d like to
+                    work together!
                   </p>
 
                   <div className="space-y-4">
                     {[
-                      { icon: Mail, text: "karan.chawlad@gmail.com", href: "mailto:karan.chawlad@gmail.com" },
+                      {
+                        icon: Mail,
+                        text: "karan.chawlad@gmail.com",
+                        href: "mailto:karan.chawlad@gmail.com",
+                      },
 
-                      { icon: MapPin, text: "Toronto, Canada", href: "https://www.utoronto.ca/" },
+                      {
+                        icon: MapPin,
+                        text: "Toronto, Canada",
+                        href: "https://www.utoronto.ca/",
+                      },
                     ].map((item, index) => (
                       <div
                         key={index}
@@ -307,7 +317,13 @@ export default function PersonalWebsite() {
                         style={{ animationDelay: `${400 + index * 100}ms` }}
                       >
                         <item.icon className="w-5 h-5 text-primary dark:text-primary" />
-                        <a href={item.href} target="blank" className="hover:underline decoration-primary"><span>{item.text}</span></a>
+                        <a
+                          href={item.href}
+                          target="blank"
+                          className="hover:underline decoration-primary"
+                        >
+                          <span>{item.text}</span>
+                        </a>
                       </div>
                     ))}
                   </div>
@@ -319,7 +335,10 @@ export default function PersonalWebsite() {
                         Icon: Linkedin,
                         href: "https://linkedin.com/in/karan-chawla-dora",
                       },
-                      { Icon: Instagram, href: "https://www.instagram.com/_karan.chawla"}
+                      {
+                        Icon: Instagram,
+                        href: "https://www.instagram.com/_karan.chawla",
+                      },
                     ].map(({ Icon, href }, index) => (
                       <Button
                         key={index}
