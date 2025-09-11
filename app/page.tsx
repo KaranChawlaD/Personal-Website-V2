@@ -149,7 +149,7 @@ export default function PersonalWebsite() {
                   Karan Chawla
                 </h1>
                 <p className="text-xl text-primary dark:text-primary">
-                  Incoming Engineering Science @ UofT
+                  Engineering Science @ UofT
                 </p>
               </div>
             </div>
