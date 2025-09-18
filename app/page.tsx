@@ -447,8 +447,8 @@ export default function PersonalWebsite() {
                 marginRight: '20px'
               }}>
                   <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev' style={{ color: '#f8fbef', textDecoration: 'none', fontSize: '1rem' }}>←</a>
-              <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/' target='_blank'>
-              <img src='https://WebRing.skule.ca/img/icon.svg' alt='SKULE WebRing' style={{ width: '24px', height: '24px' }}/>
+              <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/' target='_blank' className="md:w-[24px] md:h-[24px] w-[20px] h-[20px]">
+              <img src='https://WebRing.skule.ca/img/icon.svg' alt='SKULE WebRing' />
               </a>
               <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next' style={{ color: '#f8fbef', textDecoration: 'none', fontSize: '1rem' }}>→</a>
               </div>
