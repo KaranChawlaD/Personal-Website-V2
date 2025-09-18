@@ -351,6 +351,10 @@ export default function PersonalWebsite() {
                         Icon: Instagram,
                         href: "https://www.instagram.com/_karan.chawla",
                       },
+                      {
+                        Icon: Twitter,
+                        href: "https://x.com/KaranChawlaD"
+                      }
                     ].map(({ Icon, href }, index) => (
                       <Button
                         key={index}
