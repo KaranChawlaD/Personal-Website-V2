@@ -434,8 +434,24 @@ export default function PersonalWebsite() {
                 );
               })}
             </div>
-
-            <div className="flex-1 flex justify-end">
+            
+            <div className="flex-1 flex justify-end items-center">
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '15px',
+                backgroundColor: '#8fa149',
+                padding: '7px 10px',
+                borderRadius: '15px',
+                border: '1px solid #8fa149',
+                marginRight: '20px'
+              }}>
+                  <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev' style={{ color: '#f8fbef', textDecoration: 'none', fontSize: '1rem' }}>←</a>
+              <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/' target='_blank'>
+              <img src='https://WebRing.skule.ca/img/icon.svg' alt='SKULE WebRing' style={{ width: '24px', height: '24px' }}/>
+              </a>
+              <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next' style={{ color: '#f8fbef', textDecoration: 'none', fontSize: '1rem' }}>→</a>
+              </div>
               <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
             </div>
           </div>
