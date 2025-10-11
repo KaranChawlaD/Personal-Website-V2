@@ -11,7 +11,8 @@ const nunitoSans = Nunito_Sans({
 
 export const metadata: Metadata = {
   title: "Karan Chawla - Personal Website",
-  description: "Personal website and portfolio",
+  description: "Engineering Science @ University of Toronto. Passioned by Robotics.",
+  keywords: "UofT, University of Toronto, Engineer, Student, Engineering Science, Karan Chawla, Karan Chawla Dora, Robotics, Personal Website, Portfolio",
   icons: {
     icon: "/profile.png"
   }
