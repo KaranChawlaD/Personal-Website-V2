@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AnimatedCard } from "@/components/animated-card";
 import {
   Mail,
-  Phone,
   MapPin,
   Github,
   Linkedin,
@@ -134,11 +134,14 @@ export default function PersonalWebsite() {
         return (
           <div className="space-y-8">
             <div className="text-center space-y-4">
-              <div className="w-32 h-32 mx-auto rounded-full bg-secondary dark:bg-secondary flex items-center justify-center animate-bounce-in animate-float">
-                <img
-                  src="/profile.png?height=128&width=128"
+              <div className="w-32 h-32 mx-auto rounded-full bg-secondary dark:bg-secondary flex items-center justify-center animate-bounce-in animate-float relative overflow-hidden">
+                <Image
+                  src="/profile.png"
                   alt="Profile"
+                  width={128}
+                  height={128}
                   className="w-full h-full rounded-full object-cover"
+                  priority
                 />
               </div>
               <div
@@ -467,11 +470,13 @@ export default function PersonalWebsite() {
             rel="noopener noreferrer"
             className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6"
           >
-            <img
-              src="https://WebRing.skule.ca/img/icon.svg"
-              alt="SKULE WebRing"
-              className="w-full h-full"
-            />
+                      <Image
+                        src="https://WebRing.skule.ca/img/icon.svg"
+                        alt="SKULE WebRing"
+                        width={24}
+                        height={24}
+                        className="w-full h-full"
+                      />
           </a>
           <a
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next"
