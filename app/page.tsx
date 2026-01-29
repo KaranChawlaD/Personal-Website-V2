@@ -16,8 +16,6 @@ import {
   Briefcase,
   Code,
   MessageCircle,
-  X,
-  TwitterIcon,
   Instagram,
 } from "lucide-react";
 
