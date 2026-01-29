@@ -391,7 +391,7 @@ export default function PersonalWebsite() {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-500 ${
+      className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
         isDark ? "bg-background" : "bg-background"
       }`}
     >
@@ -434,24 +434,8 @@ export default function PersonalWebsite() {
                 );
               })}
             </div>
-            
+
             <div className="flex-1 flex justify-end items-center">
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '15px',
-                backgroundColor: '#8fa149',
-                padding: '7px 10px',
-                borderRadius: '15px',
-                border: '1px solid #8fa149',
-                marginRight: '20px'
-              }}>
-                  <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev' style={{ color: '#f8fbef', textDecoration: 'none', fontSize: '1rem' }}>←</a>
-              <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/' target='_blank' className="md:w-[24px] md:h-[24px] w-[20px] h-[20px]">
-              <img src='https://WebRing.skule.ca/img/icon.svg' alt='SKULE WebRing' />
-              </a>
-              <a href='https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next' style={{ color: '#f8fbef', textDecoration: 'none', fontSize: '1rem' }}>→</a>
-              </div>
               <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
             </div>
           </div>
@@ -464,6 +448,39 @@ export default function PersonalWebsite() {
           {renderContent()}
         </div>
       </main>
+
+      {/* WebRing - fixed bottom-right so it doesn't crowd the navbar, even on mobile */}
+      <div
+        className="fixed bottom-4 right-4 z-40"
+        style={{ position: "fixed", bottom: "1rem", right: "1rem" }}
+      >
+        <div className="flex items-center gap-2 rounded-full border border-primary bg-primary text-background px-3 py-1.5 shadow-md">
+          <a
+            href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev"
+            className="text-sm leading-none hover:underline"
+          >
+            ←
+          </a>
+          <a
+            href="https://WebRing.skule.ca/#https://www.karan-chawla.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6"
+          >
+            <img
+              src="https://WebRing.skule.ca/img/icon.svg"
+              alt="SKULE WebRing"
+              className="w-full h-full"
+            />
+          </a>
+          <a
+            href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next"
+            className="text-sm leading-none hover:underline"
+          >
+            →
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
