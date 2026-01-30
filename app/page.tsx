@@ -135,7 +135,7 @@ export default function PersonalWebsite() {
               <div className="w-32 h-32 mx-auto rounded-full bg-secondary dark:bg-secondary flex items-center justify-center animate-bounce-in animate-float relative overflow-hidden">
                 <Image
                   src="/profile.png"
-                  alt="Profile"
+                  alt="Karan Chawla - Engineering Science student at University of Toronto"
                   width={128}
                   height={128}
                   className="w-full h-full rounded-full object-cover"
