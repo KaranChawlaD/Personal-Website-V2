@@ -1,5 +1,5 @@
 import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -17,11 +17,6 @@ export const metadata: Metadata = {
     template: "%s | Karan Chawla",
   },
   description: "Engineering Science student at the University of Toronto. Passionate about robotics, software engineering, and building innovative solutions. Explore my projects, experience, and journey in technology.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
   keywords: [
     "Karan Chawla",
     "Karan Chawla Dora",
@@ -95,6 +90,12 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   category: "Portfolio",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 // Structured data for SEO
