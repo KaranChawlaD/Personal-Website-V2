@@ -57,30 +57,33 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Karan Chawla - Personal Website",
     title: "Karan Chawla - Engineering Science @ UofT",
-    description: "Engineering Science student at the University of Toronto. Passionate about robotics, software engineering, and building innovative solutions.",
+    description: "Engineering Science student at the University of Toronto. Passionate about robotics, software engineering, and building innovative solutions. Explore my projects, experience, and journey in technology.",
     images: [
       {
         url: `${siteUrl}/profile.png`,
         width: 1200,
         height: 1200,
-        alt: "Karan Chawla - Profile Picture",
+        alt: "Karan Chawla - Engineering Science student at University of Toronto",
         type: "image/png",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Karan Chawla - Engineering Science @ UofT",
-    description: "Engineering Science student at the University of Toronto. Passionate about robotics, software engineering, and building innovative solutions.",
+    description: "Engineering Science student at the University of Toronto. Passionate about robotics, software engineering, and building innovative solutions. Explore my projects, experience, and journey in technology.",
     images: [`${siteUrl}/profile.png`],
     creator: "@KaranChawlaD",
+    site: "@KaranChawlaD",
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -90,6 +93,12 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   category: "Portfolio",
+  verification: {
+    // Add your verification codes here when available
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
+    // yahoo: "your-yahoo-verification-code",
+  },
 };
 
 export const viewport: Viewport = {
@@ -99,7 +108,7 @@ export const viewport: Viewport = {
 };
 
 // Structured data for SEO
-const jsonLd = {
+const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Karan Chawla",
@@ -120,6 +129,7 @@ const jsonLd = {
   address: {
     "@type": "PostalAddress",
     addressLocality: "Toronto",
+    addressRegion: "Ontario",
     addressCountry: "CA",
   },
   sameAs: [
@@ -136,7 +146,40 @@ const jsonLd = {
     "Web Development",
     "Machine Learning",
     "FIRST Robotics Competition",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Python",
+    "Java",
   ],
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Engineering Science Student",
+    occupationLocation: {
+      "@type": "City",
+      name: "Toronto",
+    },
+  },
+};
+
+// Website structured data
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Karan Chawla - Personal Website",
+  url: "https://www.karan-chawla.com",
+  description: "Engineering Science student at the University of Toronto. Passionate about robotics, software engineering, and building innovative solutions.",
+  author: {
+    "@type": "Person",
+    name: "Karan Chawla",
+  },
+  inLanguage: "en-US",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://www.karan-chawla.com/?search={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -149,7 +192,11 @@ export default function RootLayout({
       <body className={`${nunitoSans.className} antialiased`}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         {children}
       </body>

@@ -130,16 +130,17 @@ export default function PersonalWebsite() {
     switch (activeSection) {
       case "about":
         return (
-          <div className="space-y-8">
+          <section className="space-y-8" aria-label="About Karan Chawla">
             <div className="text-center space-y-4">
               <div className="w-32 h-32 mx-auto rounded-full bg-secondary dark:bg-secondary flex items-center justify-center animate-bounce-in animate-float relative overflow-hidden">
                 <Image
                   src="/profile.png"
-                  alt="Karan Chawla - Engineering Science student at University of Toronto"
+                  alt="Karan Chawla - Engineering Science student at University of Toronto, passionate about robotics and software engineering"
                   width={128}
                   height={128}
                   className="w-full h-full rounded-full object-cover"
                   priority
+                  fetchPriority="high"
                 />
               </div>
               <div
@@ -160,7 +161,7 @@ export default function PersonalWebsite() {
               delay={400}
               animation="slide-in-left"
             >
-              <div className="p-6">
+              <article className="p-6">
                 <h2 className="text-2xl font-semibold text-text dark:text-text mb-4">
                   About Me
                 </h2>
@@ -195,14 +196,14 @@ export default function PersonalWebsite() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </article>
             </AnimatedCard>
-          </div>
+          </section>
         );
 
       case "experience":
         return (
-          <div className="space-y-6">
+          <section className="space-y-6" aria-label="Work Experience">
             <h2 className="text-3xl font-bold text-text dark:text-text text-center mb-8 animate-fade-in">
               Experience
             </h2>
@@ -238,12 +239,12 @@ export default function PersonalWebsite() {
                 </AnimatedCard>
               ))}
             </div>
-          </div>
+          </section>
         );
 
       case "projects":
         return (
-          <div className="space-y-6">
+          <section className="space-y-6" aria-label="Projects Portfolio">
             <h2 className="text-3xl font-bold text-text dark:text-text text-center mb-8 animate-fade-in">
               Projects
             </h2>
@@ -273,7 +274,12 @@ export default function PersonalWebsite() {
                         </Badge>
                       ))}
                     </div>
-                    <a href={project.link} target="blank">
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} project`}
+                    >
                       <Button
                         variant="outline"
                         size="sm"
@@ -286,12 +292,12 @@ export default function PersonalWebsite() {
                 </AnimatedCard>
               ))}
             </div>
-          </div>
+          </section>
         );
 
       case "contact":
         return (
-          <div className="space-y-6">
+          <section className="space-y-6" aria-label="Contact Information">
             <h2 className="text-3xl font-bold text-text dark:text-text text-center mb-8 animate-fade-in">
               Get In Touch
             </h2>
@@ -332,8 +338,10 @@ export default function PersonalWebsite() {
                         <item.icon className="w-5 h-5 text-primary dark:text-primary" />
                         <a
                           href={item.href}
-                          target="blank"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="hover:underline decoration-primary"
+                          aria-label={item.text}
                         >
                           <span>{item.text}</span>
                         </a>
@@ -378,7 +386,7 @@ export default function PersonalWebsite() {
                 </div>
               </AnimatedCard>
             </div>
-          </div>
+          </section>
         );
 
       default:
@@ -386,17 +394,65 @@ export default function PersonalWebsite() {
     }
   };
 
+  // Structured data for projects
+  const projectsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: projects.map((project, index) => ({
+      "@type": "SoftwareApplication",
+      position: index + 1,
+      name: project.title,
+      description: project.description,
+      applicationCategory: "WebApplication",
+      operatingSystem: "Web",
+      url: project.link,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+    })),
+  };
+
+  // Structured data for experience
+  const experienceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: experience.map((exp, index) => ({
+      "@type": "JobPosting",
+      position: index + 1,
+      title: exp.title,
+      description: exp.description,
+      hiringOrganization: {
+        "@type": "Organization",
+        name: exp.company,
+      },
+      datePosted: exp.period.split(" - ")[0],
+      validThrough: exp.period.includes(" - ") ? exp.period.split(" - ")[1] : exp.period,
+    })),
+  };
+
   if (!mounted) {
     return null; // Prevent hydration mismatch
   }
 
   return (
-    <div
-      className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
-        isDark ? "bg-background" : "bg-background"
-      }`}
-    >
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(experienceJsonLd) }}
+      />
+      <div
+        className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
+          isDark ? "bg-background" : "bg-background"
+        }`}
+      >
       {/* Navigation */}
+      <header>
       <nav
         className={`sticky top-0 z-50 backdrop-blur-sm border-b transition-colors duration-500 ${
           isDark
@@ -417,6 +473,8 @@ export default function PersonalWebsite() {
                     variant={activeSection === item.id ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setActiveSection(item.id)}
+                    aria-label={`Navigate to ${item.label} section`}
+                    aria-current={activeSection === item.id ? "page" : undefined}
                     className={`rounded-full transition-all duration-300 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 whitespace-nowrap ${
                       activeSection === item.id
                         ? isDark
@@ -442,9 +500,10 @@ export default function PersonalWebsite() {
           </div>
         </div>
       </nav>
+      </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
+      <main className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8" role="main">
         <div key={activeSection} className="animate-fade-in">
           {renderContent()}
         </div>
@@ -459,6 +518,8 @@ export default function PersonalWebsite() {
           <a
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev"
             className="text-sm leading-none hover:underline"
+            aria-label="Previous site in SKULE WebRing"
+            rel="noopener noreferrer"
           >
             ←
           </a>
@@ -467,23 +528,28 @@ export default function PersonalWebsite() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6"
+            aria-label="SKULE WebRing - University of Toronto Engineering WebRing"
           >
                       <Image
                         src="https://WebRing.skule.ca/img/icon.svg"
-                        alt="SKULE WebRing"
+                        alt="SKULE WebRing - University of Toronto Engineering WebRing"
                         width={24}
                         height={24}
                         className="w-full h-full"
+                        loading="lazy"
                       />
           </a>
           <a
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next"
             className="text-sm leading-none hover:underline"
+            aria-label="Next site in SKULE WebRing"
+            rel="noopener noreferrer"
           >
             →
           </a>
         </div>
       </div>
     </div>
+    </>
   );
 }
