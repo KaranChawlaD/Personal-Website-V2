@@ -104,6 +104,20 @@ export default function PersonalWebsite() {
 
   const experience = [
     {
+      title: "State Estimation Developer (C++/Python)",
+      company: "SAE AutoDrive- Toronto Autonomous Vehicle Team",
+      period: "Sep. 2025– Present",
+      description:
+        "Developing a lane localization and state rollback algorithm in C++. Implementing ROS-based code to create sensor queues and simulation analysis. Collaborating via Git and Agile methodologies to integrate estimation modules into the vehicle's real-time control stack.",
+    },
+    {
+      title: "Frontend Developer",
+      company: "UofTHacks",
+      period: "Oct. 2025– Present",
+      description:
+        "Architecting high-traffic frontend interfaces using React and Next.js to support 3,000+ concurrent users during the 2026 registration cycle. Engineered an automated support chatbot on Hacker Dashboard.",
+    },
+    {
       title: "FIRST Robotics Competition — Robotics Team Captain & Software Lead",
       company: "FIRST Robotics Competition",
       period: "2021 - 2025",
