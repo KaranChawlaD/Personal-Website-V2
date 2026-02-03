@@ -80,6 +80,13 @@ export default function PersonalWebsite() {
 
   const projects = [
     {
+      title: "Echo — Agentic Voice AI to Get Help",
+      description:
+        "End-to-end full-stack app to automate outbound phone communications using autonomous voice agents. Integrated Twilio + VAPI for real-time audio streaming, transcription, and LLM-based decision-making during active calls.",
+      tech: ["React", "Express.js", "VAPI", "Twilio"],
+      link: "https://github.com/KaranChawlaD/Echo",
+    },
+    {
       title: "LipsLipsRevolution",
       description:
         "2x prize-winning project at HacktheNorth 2024. A hackathon-wide lip-syncing challenge.",
@@ -288,20 +295,32 @@ export default function PersonalWebsite() {
                         </Badge>
                       ))}
                     </div>
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.title} project`}
-                    >
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.title} project`}
+                      >
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-primary dark:border-primary text-primary dark:text-primary hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-background bg-transparent transition-all duration-300"
+                        >
+                          View Project
+                        </Button>
+                      </a>
+                    ) : (
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-primary dark:border-primary text-primary dark:text-primary hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-background bg-transparent transition-all duration-300"
+                        disabled
+                        aria-label={`${project.title} project link unavailable`}
+                        className="border-primary/50 dark:border-primary/50 text-primary/60 dark:text-primary/60 bg-transparent cursor-not-allowed"
                       >
-                        View Project
+                        Private
                       </Button>
-                    </a>
+                    )}
                   </div>
                 </AnimatedCard>
               ))}
@@ -419,7 +438,7 @@ export default function PersonalWebsite() {
       description: project.description,
       applicationCategory: "WebApplication",
       operatingSystem: "Web",
-      url: project.link,
+      ...(project.link ? { url: project.link } : {}),
       offers: {
         "@type": "Offer",
         price: "0",
