@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Nunito_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const nunitoSans = Nunito_Sans({
@@ -323,6 +324,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(experienceJsonLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
