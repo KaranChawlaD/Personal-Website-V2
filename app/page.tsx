@@ -65,11 +65,19 @@ const experience = [
         "Developing a lane localization and state rollback algorithm in C++. Implementing ROS-based code to create sensor queues and simulation analysis. Collaborating via Git and Agile methodologies to integrate estimation modules into the vehicle's real-time control stack.",
     },
     {
-      title: "Frontend Developer",
+      title: "Full Stack Developer",
       company: "UofTHacks",
       period: "Oct. 2025– Present",
       description:
         "Architecting high-traffic frontend interfaces using React and Next.js to support 3,000+ concurrent users during the 2026 registration cycle. Engineered an automated support chatbot on Hacker Dashboard.",
+    },
+    {
+      title: "Autonomous Space Robotics Lab (ASRL) — Researcher",
+      company:
+        "University of Toronto Institute for Aerospace Studies (UTIAS)",
+      period: "May 2026 - Aug 2026",
+      description:
+        "Implementing a radio mesh network for a multi-robot fleet. Working under the supervision of Professor Tim Barfoot in ASRL’s robotics research group.",
     },
     {
       title: "FIRST Robotics Competition — Robotics Team Captain & Software Lead",

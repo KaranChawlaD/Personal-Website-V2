@@ -229,6 +229,12 @@ const experience = [
     period: "Oct. 2025– Present",
   },
   {
+    title: "Autonomous Space Robotics Lab (ASRL) — Researcher",
+    company:
+      "University of Toronto Institute for Aerospace Studies (UTIAS)",
+    period: "May 2026 - Aug 2026",
+  },
+  {
     title: "FIRST Robotics Competition — Robotics Team Captain & Software Lead",
     company: "FIRST Robotics Competition",
     period: "2021 - 2025",
