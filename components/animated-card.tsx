@@ -26,7 +26,7 @@ export function AnimatedCard({
       className={`
         ${className} 
         animate-${animation}
-        transition-all duration-300 hover:shadow-lg hover:scale-105
+        transition-shadow duration-300 hover:shadow-md
       `}
       style={{ animationDelay: `${delay}ms` }}
     >

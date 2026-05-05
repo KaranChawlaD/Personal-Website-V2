@@ -119,7 +119,33 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(
+        ellipse 100% 80% at 0% 0%,
+        color-mix(in oklch, var(--primary) 12%, transparent) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 80% 60% at 100% 20%,
+        color-mix(in oklch, var(--secondary) 15%, transparent) 0%,
+        transparent 50%
+      );
+    background-attachment: fixed;
+  }
+  .font-heading {
+    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 35%, transparent);
   }
 }

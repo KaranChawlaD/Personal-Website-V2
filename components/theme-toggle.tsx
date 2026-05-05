@@ -13,14 +13,7 @@ export function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
       variant="outline"
       size="icon"
       onClick={onToggle}
-      className={`
-        relative overflow-hidden transition-all duration-300 ease-in-out
-        ${
-          isDark
-            ? "border-dark-primary text-dark-text hover:bg-dark-primary hover:text-dark-background bg-transparent"
-            : "border-primary text-primary hover:bg-primary hover:text-white bg-transparent"
-        }
-      `}
+      className="relative overflow-hidden border-primary bg-transparent text-primary transition-all duration-300 ease-in-out hover:bg-primary hover:text-primary-foreground"
     >
       <div
         className={`transition-transform duration-500 ${

@@ -1,7 +1,7 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Nunito_Sans } from "next/font/google";
+import { Nunito_Sans, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -10,6 +10,12 @@ const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
   display: "swap", // Prevents invisible text during font load
   preload: true, // Preloads the font for better performance
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
 });
 
 const siteUrl = "https://www.karan-chawla.com";
@@ -294,7 +300,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={nunitoSans.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${nunitoSans.variable} ${outfit.variable}`}
+      suppressHydrationWarning
+    >
       <body className={`${nunitoSans.className} antialiased`}>
         <Script
           id="theme-script"
