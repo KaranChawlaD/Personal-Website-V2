@@ -63,7 +63,8 @@ export function PersonalWebsiteClient({
   }, []);
 
   const updateActiveFromScroll = useCallback(() => {
-    const headerOffset = 100;
+    const headerOffset =
+      typeof window !== "undefined" && window.innerWidth < 640 ? 124 : 80;
     let current: (typeof SECTION_IDS)[number] = "about";
     for (const id of SECTION_IDS) {
       const el = document.getElementById(id);
@@ -112,22 +113,26 @@ export function PersonalWebsiteClient({
   ];
 
   return (
-    <div className="min-h-screen overflow-x-hidden transition-colors duration-300 bg-background">
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/65">
+    <div className="min-h-screen transition-colors duration-300 bg-background">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/65">
         <nav
-          className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8"
+          className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2.5 px-4 py-3 sm:flex sm:items-center sm:gap-3 sm:px-6 lg:px-8"
           aria-label="Primary"
         >
           <button
             type="button"
             onClick={() => scrollToSection("about")}
-            className="font-heading shrink-0 text-left text-base font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80"
+            className="col-start-1 row-start-1 justify-self-start truncate text-left font-heading text-base font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80 sm:order-1 sm:max-w-none"
           >
             Karan Chawla
           </button>
 
-          <div className="min-w-0 flex-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex justify-end gap-1 sm:justify-center">
+          <div className="col-start-2 row-start-1 justify-self-end sm:order-3 sm:justify-self-auto">
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+          </div>
+
+          <div className="col-span-2 row-start-2 min-w-0 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:order-2 sm:col-span-1 sm:row-start-1 sm:flex-1 sm:pb-0">
+            <div className="flex w-max min-w-full justify-center gap-1.5 sm:mx-auto sm:w-auto sm:min-w-0 sm:justify-center">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -137,7 +142,7 @@ export function PersonalWebsiteClient({
                     activeSection === item.id ? "location" : undefined
                   }
                   className={cn(
-                    "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                    "shrink-0 rounded-full px-3 py-2 text-sm font-medium transition-colors sm:py-1.5",
                     activeSection === item.id
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -148,22 +153,21 @@ export function PersonalWebsiteClient({
               ))}
             </div>
           </div>
-
-          <div className="shrink-0">
-            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-          </div>
         </nav>
       </header>
 
-      <main role="main">
+      <main
+        role="main"
+        className="pt-[7.25rem] sm:pt-[4.5rem]"
+      >
         {/* About — hero + bio + skills */}
         <section
           id="about"
-          className="scroll-mt-24 border-b border-border/40 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+          className="scroll-mt-[7.5rem] border-b border-border/40 px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
           aria-label="About Karan Chawla"
         >
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] lg:items-center lg:gap-16">
+            <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] md:items-center md:gap-12 lg:gap-16">
               <div className="space-y-6">
                 <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                   Engineering · Robotics · Software
@@ -185,7 +189,7 @@ export function PersonalWebsiteClient({
                   hardware and software. I care about building communities
                   around STEM and learning through collaboration.
                 </p>
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap justify-center gap-3 pt-2 sm:justify-start">
                   {/* <Button asChild size="lg" className="rounded-full px-6">
                     <a
                       href="/Karan_Chawla_Resume.pdf"
@@ -208,7 +212,7 @@ export function PersonalWebsiteClient({
                 </div>
               </div>
 
-              <div className="relative mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-none">
+              <div className="relative mx-auto hidden w-full max-w-[280px] md:mx-0 md:block md:max-w-none">
                 <div
                   className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/20 via-transparent to-secondary/30 blur-2xl dark:from-primary/25 dark:to-secondary/20"
                   aria-hidden
@@ -220,8 +224,7 @@ export function PersonalWebsiteClient({
                     width={400}
                     height={400}
                     className="aspect-square w-full object-cover"
-                    priority
-                    fetchPriority="high"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -249,7 +252,7 @@ export function PersonalWebsiteClient({
         {/* Experience — timeline */}
         <section
           id="experience"
-          className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+          className="scroll-mt-[7.5rem] px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
           aria-label="Work experience"
         >
           <div className="mx-auto max-w-6xl">
@@ -299,7 +302,7 @@ export function PersonalWebsiteClient({
         {/* Projects */}
         <section
           id="projects"
-          className="scroll-mt-24 border-t border-border/40 bg-muted/30 px-4 py-16 dark:bg-muted/10 sm:px-6 sm:py-20 lg:px-8"
+          className="scroll-mt-[7.5rem] border-t border-border/40 bg-muted/30 px-4 py-16 dark:bg-muted/10 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
           aria-label="Projects"
         >
           <div className="mx-auto max-w-6xl">
@@ -367,7 +370,7 @@ export function PersonalWebsiteClient({
         {/* Contact */}
         <section
           id="contact"
-          className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+          className="scroll-mt-[7.5rem] px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-24 lg:px-8"
           aria-label="Contact"
         >
           <div className="mx-auto max-w-6xl">
