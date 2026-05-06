@@ -114,7 +114,7 @@ export function PersonalWebsiteClient({
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-background">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/65">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-background/45 shadow-[0_8px_32px_-16px_rgba(15,23,42,0.45)] backdrop-blur-2xl supports-[backdrop-filter]:bg-background/30 dark:border-white/10">
         <nav
           className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2.5 px-4 py-3 sm:flex sm:items-center sm:gap-3 sm:px-6 lg:px-8"
           aria-label="Primary"
@@ -122,7 +122,7 @@ export function PersonalWebsiteClient({
           <button
             type="button"
             onClick={() => scrollToSection("about")}
-            className="col-start-1 row-start-1 justify-self-start truncate text-left font-heading text-base font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80 sm:order-1 sm:max-w-none"
+            className="col-start-1 row-start-1 justify-self-start truncate text-left font-heading text-base font-semibold tracking-tight text-foreground/95 transition-opacity hover:opacity-80 sm:order-1 sm:max-w-none"
           >
             Karan Chawla
           </button>
@@ -142,10 +142,10 @@ export function PersonalWebsiteClient({
                     activeSection === item.id ? "location" : undefined
                   }
                   className={cn(
-                    "shrink-0 rounded-full px-3 py-2 text-sm font-medium transition-colors sm:py-1.5",
+                    "shrink-0 rounded-full border px-3 py-2 text-sm font-medium transition-all duration-300 sm:py-1.5",
                     activeSection === item.id
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      ? "border-primary/60 bg-primary/80 text-primary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_20px_-16px_hsl(var(--primary))] backdrop-blur-md dark:border-primary/50 dark:bg-primary/75"
+                      : "border-transparent bg-transparent text-muted-foreground/95 hover:border-primary/30 hover:bg-primary/15 hover:text-foreground dark:hover:border-primary/35 dark:hover:bg-primary/20"
                   )}
                 >
                   {item.label}
@@ -176,7 +176,7 @@ export function PersonalWebsiteClient({
                   Karan Chawla
                 </h1>
                 <p className="max-w-xl text-lg font-medium leading-snug text-foreground/90 sm:text-xl">
-                  Building autonomous robotic systems at the intersection of hardware and code.
+                  Building autonomous robots at the intersection of hardware and software engineering.
                 </p>
                 <p className="text-base text-muted-foreground sm:text-lg">
                   Engineering Science @{" "}
@@ -457,10 +457,10 @@ export function PersonalWebsiteClient({
 
       {/* SKULE WebRing */}
       <div className="fixed bottom-4 right-4 z-40">
-        <div className="flex items-center gap-2 rounded-full border border-primary bg-primary px-3 py-1.5 text-primary-foreground shadow-md">
+        <div className="flex items-center gap-2 rounded-full border border-primary/45 bg-primary/20 px-3 py-1.5 text-foreground shadow-[0_10px_30px_-14px_rgba(15,23,42,0.55),0_0_36px_-12px_hsl(var(--primary))] backdrop-blur-xl supports-[backdrop-filter]:bg-primary/15 dark:border-primary/40 dark:bg-primary/25">
           <a
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev"
-            className="text-sm leading-none hover:underline"
+            className="text-sm leading-none text-foreground/90 transition-colors hover:text-primary hover:underline"
             aria-label="Previous site in SKULE WebRing"
             rel="noopener noreferrer"
           >
@@ -470,7 +470,7 @@ export function PersonalWebsiteClient({
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-5 items-center justify-center md:size-6"
+            className="flex size-5 items-center justify-center rounded-full border border-transparent transition-colors hover:border-primary/35 hover:bg-primary/15 md:size-6"
             aria-label="SKULE WebRing"
           >
             <Image
@@ -485,7 +485,7 @@ export function PersonalWebsiteClient({
           </a>
           <a
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=next"
-            className="text-sm leading-none hover:underline"
+            className="text-sm leading-none text-foreground/90 transition-colors hover:text-primary hover:underline"
             aria-label="Next site in SKULE WebRing"
             rel="noopener noreferrer"
           >
