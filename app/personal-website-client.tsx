@@ -114,7 +114,7 @@ export function PersonalWebsiteClient({
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-background">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-background/45 shadow-[0_8px_32px_-16px_rgba(15,23,42,0.45)] backdrop-blur-2xl supports-[backdrop-filter]:bg-background/30 dark:border-white/10">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/45 bg-background/55 shadow-surface-header backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40">
         <nav
           className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2.5 px-4 py-3 sm:flex sm:items-center sm:gap-3 sm:px-6 lg:px-8"
           aria-label="Primary"
@@ -144,8 +144,8 @@ export function PersonalWebsiteClient({
                   className={cn(
                     "shrink-0 rounded-full border px-3 py-2 text-sm font-medium transition-all duration-300 sm:py-1.5",
                     activeSection === item.id
-                      ? "border-primary/60 bg-primary/80 text-primary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_20px_-16px_hsl(var(--primary))] backdrop-blur-md dark:border-primary/50 dark:bg-primary/75"
-                      : "border-transparent bg-transparent text-muted-foreground/95 hover:border-primary/30 hover:bg-primary/15 hover:text-foreground dark:hover:border-primary/35 dark:hover:bg-primary/20"
+                      ? "border-primary/45 bg-primary/78 text-primary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_16px_-8px_rgba(110,129,55,0.38),0_14px_32px_-14px_rgba(110,129,55,0.22)] backdrop-blur-md dark:border-primary/40 dark:bg-primary/72 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_6px_20px_-10px_rgba(143,161,73,0.35)]"
+                      : "border-transparent bg-transparent text-muted-foreground/95 hover:border-primary/25 hover:bg-primary/12 hover:text-foreground dark:hover:border-primary/28 dark:hover:bg-primary/18"
                   )}
                 >
                   {item.label}
@@ -163,7 +163,7 @@ export function PersonalWebsiteClient({
         {/* About — hero + bio + skills */}
         <section
           id="about"
-          className="scroll-mt-[7.5rem] border-b border-border/40 px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
+          className="scroll-mt-[7.5rem] border-b border-border/30 px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
           aria-label="About Karan Chawla"
         >
           <div className="mx-auto max-w-6xl">
@@ -204,7 +204,7 @@ export function PersonalWebsiteClient({
                     type="button"
                     variant="outline"
                     size="lg"
-                    className="rounded-full border-border/80 bg-background/50 px-6 backdrop-blur-sm"
+                    className="rounded-full border-border/55 bg-background/55 px-6 shadow-[0_1px_2px_oklch(0.35_0.03_264_/6%)] backdrop-blur-sm dark:shadow-[0_1px_2px_oklch(0_0_0_/35%)]"
                     onClick={() => scrollToSection("contact")}
                   >
                     Get in touch
@@ -217,7 +217,7 @@ export function PersonalWebsiteClient({
                   className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/20 via-transparent to-secondary/30 blur-2xl dark:from-primary/25 dark:to-secondary/20"
                   aria-hidden
                 />
-                <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-lg ring-1 ring-black/5 dark:ring-white/10">
+                <div className="relative overflow-hidden rounded-2xl border border-border/40 bg-card shadow-surface-card ring-1 ring-foreground/[0.06] dark:ring-white/[0.07]">
                   <Image
                     src="/profile.png"
                     alt="Karan Chawla"
@@ -268,14 +268,14 @@ export function PersonalWebsiteClient({
 
             <div className="relative">
               <div
-                className="absolute bottom-0 left-[7px] top-2 w-px bg-border md:left-[11px]"
+                className="absolute bottom-0 left-[7px] top-2 w-px bg-gradient-to-b from-border/50 via-border/85 to-border/40 md:left-[11px]"
                 aria-hidden
               />
               <ul className="relative space-y-10 md:space-y-12">
                 {experience.map((exp, index) => (
                   <li key={`${exp.title}-${index}`} className="relative pl-10 md:pl-14">
                     <span
-                      className="absolute left-0 top-2 size-[15px] rounded-full border-2 border-background bg-primary shadow-sm md:left-1 md:size-[18px]"
+                      className="absolute left-0 top-2 size-[15px] rounded-full border-2 border-background bg-primary shadow-[0_0_0_1px_color-mix(in_oklch,var(--primary)_40%,transparent),0_2px_6px_oklch(0.35_0.04_264_/18%)] md:left-1 md:size-[18px]"
                       aria-hidden
                     />
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
@@ -302,7 +302,7 @@ export function PersonalWebsiteClient({
         {/* Projects */}
         <section
           id="projects"
-          className="scroll-mt-[7.5rem] border-t border-border/40 bg-muted/30 px-4 py-16 dark:bg-muted/10 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
+          className="scroll-mt-[7.5rem] border-t border-border/30 bg-muted/35 px-4 py-16 dark:bg-muted/12 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
           aria-label="Projects"
         >
           <div className="mx-auto max-w-6xl">
@@ -320,7 +320,7 @@ export function PersonalWebsiteClient({
               {projects.map((project, index) => (
                 <AnimatedCard
                   key={project.title}
-                  className="border-border/60 bg-card/80 backdrop-blur-sm dark:bg-card/40"
+                  className="border-border/40 bg-card/75 backdrop-blur-sm dark:bg-card/45"
                   delay={index * 80}
                   animation="fade-in"
                 >
@@ -335,7 +335,7 @@ export function PersonalWebsiteClient({
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-md border border-border/50 bg-muted/40 px-2 py-0.5 text-xs text-foreground/80"
+                          className="rounded-md border border-border/35 bg-muted/45 px-2 py-0.5 text-xs text-foreground/85"
                         >
                           {tech}
                         </span>
@@ -404,7 +404,7 @@ export function PersonalWebsiteClient({
               </div>
 
               <AnimatedCard
-                className="border-border/60 bg-card/80 backdrop-blur-sm dark:bg-card/40"
+                className="border-border/40 bg-card/75 backdrop-blur-sm dark:bg-card/45"
                 animation="fade-in"
               >
                 <div className="p-6 sm:p-8">
@@ -430,7 +430,7 @@ export function PersonalWebsiteClient({
                         key={label}
                         variant="outline"
                         size="icon"
-                        className="size-11 rounded-full border-border/80"
+                        className="size-11 rounded-full border-border/50 shadow-[0_1px_2px_oklch(0.35_0.03_264_/5%)] dark:shadow-[0_1px_3px_oklch(0_0_0_/40%)]"
                         asChild
                       >
                         <a
@@ -451,13 +451,13 @@ export function PersonalWebsiteClient({
         </section>
       </main>
 
-      <footer className="border-t border-border/40 px-4 py-8 text-center text-sm text-muted-foreground sm:px-6">
+      <footer className="border-t border-border/30 px-4 py-8 text-center text-sm text-muted-foreground sm:px-6">
         <p>© {new Date().getFullYear()} Karan Chawla</p>
       </footer>
 
       {/* SKULE WebRing */}
       <div className="fixed bottom-4 right-4 z-40">
-        <div className="flex items-center gap-2 rounded-full border border-primary/45 bg-primary/20 px-3 py-1.5 text-foreground shadow-[0_10px_30px_-14px_rgba(15,23,42,0.55),0_0_36px_-12px_hsl(var(--primary))] backdrop-blur-xl supports-[backdrop-filter]:bg-primary/15 dark:border-primary/40 dark:bg-primary/25">
+        <div className="flex items-center gap-2 rounded-full border border-primary/35 bg-primary/18 px-3 py-1.5 text-foreground shadow-[0_1px_0_rgba(255,255,255,0.12),0_4px_14px_-6px_rgba(110,129,55,0.32),0_18px_38px_-16px_rgba(51,65,85,0.14)] backdrop-blur-xl supports-[backdrop-filter]:bg-primary/14 dark:border-primary/32 dark:bg-primary/22 dark:shadow-[0_1px_0_rgba(255,255,255,0.08),0_8px_28px_-8px_rgba(0,0,0,0.48),0_0_36px_-12px_rgba(143,161,73,0.28)]">
           <a
             href="https://WebRing.skule.ca/#https://www.karan-chawla.com/?nav=prev"
             className="text-sm leading-none text-foreground/90 transition-colors hover:text-primary hover:underline"
