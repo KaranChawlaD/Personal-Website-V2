@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -49,6 +49,7 @@ export function PersonalWebsiteClient({
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] =
     useState<(typeof SECTION_IDS)[number]>("about");
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -62,9 +63,51 @@ export function PersonalWebsiteClient({
     }
   }, []);
 
+  useEffect(() => {
+    if (!mounted) return;
+    const el = headerRef.current;
+    if (!el) return;
+    const sync = () => {
+      document.documentElement.style.setProperty(
+        "--site-header-height",
+        `${el.getBoundingClientRect().height}px`
+      );
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    window.addEventListener("orientationchange", sync);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("orientationchange", sync);
+      document.documentElement.style.removeProperty("--site-header-height");
+    };
+  }, [mounted]);
+
   const updateActiveFromScroll = useCallback(() => {
-    const headerOffset =
-      typeof window !== "undefined" && window.innerWidth < 640 ? 124 : 80;
+    let headerOffset = typeof window !== "undefined" && window.innerWidth < 640 ? 124 : 80;
+    const raw = getComputedStyle(document.documentElement)
+      .getPropertyValue("--site-header-height")
+      .trim();
+    if (raw) {
+      const parsed = parseFloat(raw);
+      if (Number.isFinite(parsed)) headerOffset = Math.round(parsed);
+    }
+    const doc = document.documentElement;
+    const scrollBottom = window.scrollY + window.innerHeight;
+    const scrollThreshold = 16;
+    const pageScrolls =
+      doc.scrollHeight > window.innerHeight + scrollThreshold;
+    const atDocumentBottom =
+      scrollBottom >= doc.scrollHeight - scrollThreshold;
+
+    // Short last section: its top may never cross the header line before max
+    // scroll, so "projects" would stay active. Pin to contact at page bottom.
+    if (pageScrolls && atDocumentBottom) {
+      setActiveSection("contact");
+      return;
+    }
+
     let current: (typeof SECTION_IDS)[number] = "about";
     for (const id of SECTION_IDS) {
       const el = document.getElementById(id);
@@ -81,8 +124,11 @@ export function PersonalWebsiteClient({
     if (!mounted) return;
     updateActiveFromScroll();
     window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
-    return () =>
+    window.addEventListener("resize", updateActiveFromScroll);
+    return () => {
       window.removeEventListener("scroll", updateActiveFromScroll);
+      window.removeEventListener("resize", updateActiveFromScroll);
+    };
   }, [mounted, updateActiveFromScroll]);
 
   const toggleTheme = () => {
@@ -112,9 +158,15 @@ export function PersonalWebsiteClient({
     { id: "contact", label: "Contact" },
   ];
 
+  const sectionScrollMt =
+    "scroll-mt-[calc(var(--site-header-height,7.25rem)+0.375rem)]";
+
   return (
     <div className="min-h-screen transition-colors duration-300 bg-background">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/45 bg-background/55 shadow-surface-header backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40">
+      <header
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-50 border-b border-border/45 bg-background/55 shadow-surface-header backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40"
+      >
         <nav
           className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2.5 px-4 py-3 sm:flex sm:items-center sm:gap-3 sm:px-6 lg:px-8"
           aria-label="Primary"
@@ -158,12 +210,12 @@ export function PersonalWebsiteClient({
 
       <main
         role="main"
-        className="pt-[7.25rem] sm:pt-[4.5rem]"
+        className="pt-[var(--site-header-height,7.25rem)]"
       >
         {/* About — hero + bio + skills */}
         <section
           id="about"
-          className="scroll-mt-[7.5rem] border-b border-border/30 px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
+          className={`flex flex-col justify-start sm:justify-center ${sectionScrollMt} border-b border-border/30 px-4 pt-4 pb-14 min-h-[calc(100svh-var(--site-header-height,7.25rem))] sm:px-6 sm:pt-20 sm:pb-20 lg:px-8`}
           aria-label="About Karan Chawla"
         >
           <div className="mx-auto max-w-6xl">
@@ -252,7 +304,7 @@ export function PersonalWebsiteClient({
         {/* Experience — timeline */}
         <section
           id="experience"
-          className="scroll-mt-[7.5rem] px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
+          className={`${sectionScrollMt} px-4 py-16 sm:px-6 sm:py-20 lg:px-8`}
           aria-label="Work experience"
         >
           <div className="mx-auto max-w-6xl">
@@ -302,7 +354,7 @@ export function PersonalWebsiteClient({
         {/* Projects */}
         <section
           id="projects"
-          className="scroll-mt-[7.5rem] border-t border-border/30 bg-muted/35 px-4 py-16 dark:bg-muted/12 sm:scroll-mt-24 sm:px-6 sm:py-20 lg:px-8"
+          className={`${sectionScrollMt} border-t border-border/30 bg-muted/35 px-4 py-16 dark:bg-muted/12 sm:px-6 sm:py-20 lg:px-8`}
           aria-label="Projects"
         >
           <div className="mx-auto max-w-6xl">
@@ -370,82 +422,69 @@ export function PersonalWebsiteClient({
         {/* Contact */}
         <section
           id="contact"
-          className="scroll-mt-[7.5rem] px-4 py-16 sm:scroll-mt-24 sm:px-6 sm:py-24 lg:px-8"
+          className={`${sectionScrollMt} px-4 py-16 sm:px-6 sm:py-24 lg:px-8`}
           aria-label="Contact"
         >
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-end lg:gap-16">
-              <div>
-                <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Let&apos;s talk
-                </h2>
-                <p className="mt-4 max-w-md text-muted-foreground">
-                  Open to collaborations, internships, and conversations about
-                  robotics and software. Send a note anytime.
-                </p>
-                <div className="mt-8 space-y-3 text-sm sm:text-base">
-                  <a
-                    href="mailto:karan.chawlad@gmail.com"
-                    className="flex items-center gap-3 text-foreground transition-colors hover:text-primary"
-                  >
-                    <Mail className="size-5 shrink-0 text-primary" />
-                    karan.chawlad@gmail.com
-                  </a>
-                  <a
-                    href="https://www.utoronto.ca/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-foreground transition-colors hover:text-primary"
-                  >
-                    <MapPin className="size-5 shrink-0 text-primary" />
-                    Toronto, Canada
-                  </a>
-                </div>
+            <div>
+              <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+                Let&apos;s talk
+              </h2>
+              <p className="mt-4 max-w-md text-muted-foreground">
+                Open to collaborations, internships, and conversations about
+                robotics and software. Send a note anytime.
+              </p>
+              <div className="mt-8 space-y-3 text-sm sm:text-base">
+                <a
+                  href="mailto:karan.chawlad@gmail.com"
+                  className="flex items-center gap-3 text-foreground transition-colors hover:text-primary"
+                >
+                  <Mail className="size-5 shrink-0 text-primary" />
+                  karan.chawlad@gmail.com
+                </a>
+                <a
+                  href="https://www.utoronto.ca/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-foreground transition-colors hover:text-primary"
+                >
+                  <MapPin className="size-5 shrink-0 text-primary" />
+                  Toronto, Canada
+                </a>
               </div>
-
-              <AnimatedCard
-                className="border-border/40 bg-card/75 backdrop-blur-sm dark:bg-card/45"
-                animation="fade-in"
-              >
-                <div className="p-6 sm:p-8">
-                  <p className="text-sm font-medium text-muted-foreground">
-                    Elsewhere
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    {[
-                      { Icon: Github, href: "https://github.com/karanchawlad", label: "GitHub" },
-                      {
-                        Icon: Linkedin,
-                        href: "https://linkedin.com/in/karan-chawla-dora",
-                        label: "LinkedIn",
-                      },
-                      {
-                        Icon: Instagram,
-                        href: "https://www.instagram.com/_karan.chawla",
-                        label: "Instagram",
-                      },
-                      { Icon: Twitter, href: "https://x.com/KaranChawlaD", label: "X" },
-                    ].map(({ Icon, href, label }) => (
-                      <Button
-                        key={label}
-                        variant="outline"
-                        size="icon"
-                        className="size-11 rounded-full border-border/50 shadow-[0_1px_2px_oklch(0.35_0.03_264_/5%)] dark:shadow-[0_1px_3px_oklch(0_0_0_/40%)]"
-                        asChild
-                      >
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={label}
-                        >
-                          <Icon className="size-4" />
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-              </AnimatedCard>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {[
+                  { Icon: Github, href: "https://github.com/karanchawlad", label: "GitHub" },
+                  {
+                    Icon: Linkedin,
+                    href: "https://linkedin.com/in/karan-chawla-dora",
+                    label: "LinkedIn",
+                  },
+                  {
+                    Icon: Instagram,
+                    href: "https://www.instagram.com/_karan.chawla",
+                    label: "Instagram",
+                  },
+                  { Icon: Twitter, href: "https://x.com/KaranChawlaD", label: "X" },
+                ].map(({ Icon, href, label }) => (
+                  <Button
+                    key={label}
+                    variant="outline"
+                    size="icon"
+                    className="size-11 rounded-full border-border/50 shadow-[0_1px_2px_oklch(0.35_0.03_264_/5%)] dark:shadow-[0_1px_3px_oklch(0_0_0_/40%)]"
+                    asChild
+                  >
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                    >
+                      <Icon className="size-4" />
+                    </a>
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
