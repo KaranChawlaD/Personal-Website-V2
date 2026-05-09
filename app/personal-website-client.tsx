@@ -230,9 +230,9 @@ export function PersonalWebsiteClient({
                 <p className="max-w-xl text-lg font-medium leading-snug text-foreground/90 sm:text-xl">
                   Building autonomous robots at the intersection of hardware and software engineering.
                 </p>
-                <p className="text-base text-muted-foreground sm:text-lg">
+                <p className="text-base font-bold text-muted-foreground sm:text-lg">
                   Engineering Science @{" "}
-                  <span className="text-foreground">University of Toronto</span>
+                  <a className="text-foreground font-bold hover:underline" href="https://www.utoronto.ca/" target="_blank" rel="noopener noreferrer">University of Toronto</a>
                 </p>
                 <p className="max-w-prose text-base leading-relaxed text-foreground/85">
                   I&apos;m Karan Chawla, interested in robotics, computing, and
