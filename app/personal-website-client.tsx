@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+// import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AnimatedCard } from "@/components/animated-card";
 import {
@@ -13,7 +13,7 @@ import {
   Linkedin,
   Twitter,
   Instagram,
-  FileText,
+  // FileText,
   ArrowUpRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -41,7 +41,7 @@ interface PersonalWebsiteClientProps {
 const SECTION_IDS = ["about", "experience", "projects", "contact"] as const;
 
 export function PersonalWebsiteClient({
-  skills,
+  // skills,
   projects,
   experience,
 }: PersonalWebsiteClientProps) {
