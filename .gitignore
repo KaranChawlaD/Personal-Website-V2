@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vs code tex additions
+/public/Karan_Chawla_Resume.aux
+/public/Karan_Chawla_Resume.fdb_latexmk
+/public/Karan_Chawla_Resume.fls
+/public/Karan_Chawla_Resume.log
+/public/Karan_Chawla_Resume.out
+/public/Karan_Chawla_Resume.synctex.gz

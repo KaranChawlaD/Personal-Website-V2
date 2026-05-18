@@ -1,0 +1,237 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{tikz}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+\usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+% After your font options and before \pagestyle{fancy}
+% \linespread{1.3}
+% \selectfont
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\definecolor{UofTBlue}{RGB}{3, 11, 255}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{UofTBlue}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\ExternalLink}{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1) 
+                --++ (-0, 1.2) 
+                --++ (0.6, 0) 
+                --++ (0, -0.6) 
+                --++ (0.6, 0) 
+                --++ (0, -1);
+            \path[draw, 
+                line width = 0.5, 
+                rounded corners=0.5] 
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5) 
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1) 
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Karan Chawla Dora} \\ \vspace{1pt}
+    \small  \href{mailto:karan.chawladora@mail.utoronto.ca}{\textit{karan.chawladora@mail.utoronto.ca \ExternalLink}} $|$ 
+    {(613)-462-4971} $|$ 
+    \href{https://linkedin.com/in/karan-chawla-dora/}{\textit{LinkedIn \ExternalLink}} $|$
+    \href{https://github.com/KaranChawlaD}{\textit{GitHub \ExternalLink}} $|$
+    \href{https://www.karan-chawla.com/}{\textit{Portfolio \ExternalLink}}
+\end{center}
+
+
+%-----------EXPERIENCE-----------
+\section{\textbf{Experience}}
+  \resumeSubHeadingListStart
+      
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+    \resumeSubheading
+      {\href{https://www.autodrive.utoronto.ca/}{SAE AutoDrive - Toronto Autonomous Vehicle Team (aUToronto) \ExternalLink}}{Sep. 2025 -- Present}
+      {State Estimation Developer}{Toronto, ON}
+      \resumeItemListStart
+        \resumeItem{Developed and integrated a \textbf{lane localization} model and a state rollback feature to enhance vehicle positional accuracy and system robustness.}
+        \resumeItem{Leveraged \textbf{ROS} for data analysis and testing.}
+    \resumeItemListEnd
+    \resumeSubheading
+      {\href{https://www.syrc.ca/}{FIRST Robotics Competition \ExternalLink}}{Jul. 2021 -- Jun. 2025}
+      {Robotics Team Captain \& Software Development Lead}{Ottawa, ON}
+      \resumeItemListStart
+        \resumeItem{Founding member and leader of a 90+ high school student team competing at a national level, qualifying for the \textbf{World Championship} and \textbf{2x Finalists at Provincial Championships}.}
+        \resumeItem{Developed accurate autonomous routines in \textbf{C++}, leveraging \textbf{computer vision} and \textbf{odometry}.}
+        \resumeItem{Enhanced robot performance and precision using feedforward and PID feedback \textbf{control systems}.}
+    \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------Research&Publications-----------
+\section{\textbf{Research \& Publications}}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Control Systems Paper on PID Optimization} $|$ \emph{Java, Python, Matplotlib}}{Mar. 2025}
+          \resumeItemListStart
+            \resumeItem{Developed a novel PID tuning method, boosting robotic control stability and precision}
+            \resumeItem{Outperformed standard tuning techniques through experimental benchmarking}
+            \resumeItem{Independent technical paper in progress, integrating control theory and real-world robotics testing}
+          \resumeItemListEnd
+        
+      \resumeProjectHeading{\href{https://ecs.confex.com/ecs/prime2024/meetingapp.cgi/Paper/193950}{\textbf {Bruce Lab | University of Ottawa \ExternalLink}} $|$ \emph{Research Assistant}}{Aug. 2024}{}
+      \resumeItemListStart
+        \resumeItem{Reduced transient time by 80\% and steady-state error by 40\% by implementing PID control systems in C++ to stabilize current and voltage in platinum-nickel electrodeposition for Fuel Cell Electric Vehicles.}
+        \resumeItem{Reduced calibration time by one-third, developing a Python user interface to conduct trials \textbf{autonomously}.}
+        \resumeItem{Expanded trial voltage limits by 5x, refining an \textbf{Arduino}-based potentiostat electric circuit.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\href{https://www.craiedl.ca/publications/training-critical-engineers}{\textbf {Canadian Robotics and Artificial Intelligence Ethics Design Lab \ExternalLink}} $|$ \emph{Robotics Research}}{Aug. 2024}
+      \resumeItemListStart
+        \resumeItem{Accelerated project timeline by 50\% by characterizing DJI's Robomaster S1 in a simulative environment.}
+        \resumeItem{Achieved 1-second target tracking by implementing computer vision models with Python \textbf{machine learning}.}
+      \resumeItemListEnd
+    \resumeSubHeadingListEnd
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{\textbf{Technical Skills}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C/C++, Java, Javascript, Typescript, HTML, CSS} \\
+     \textbf{Robotics \& Control}{: ROS, PID control, state estimation, sensor fusion, odometry} \\
+     \textbf{Tools \& Libraries}{: NumPy, Matplotlib, pandas, Arduino, Git, Next.js}
+    }}
+ \end{itemize}
+
+
+
+
+%-------------------------------------------
+%-----------PROGRAMMING SKILLS-----------
+\section{\textbf{Awards}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{HackTheNorth 2024 2x Award Winner}{: Best Use of MongoDB, SymphonicLabs} \\
+     \textbf{2x FRC Provincial Finalists}{: FIRST Robotics 2023 , 2024} \\
+     \textbf{Harvard-MIT Math Tournament}{: Qualified Participant} \\
+     \textbf{FIRST Alumni Entrance Scholarship}{: Value of \$15,000} \\
+     \textbf{Dean's List Semi-finalist}{: First Robotics Competition} \\
+    }}
+ \end{itemize}
+
+ %-----------EDUCATION-----------
+\section{\textbf{Education}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Toronto}{Toronto, ON}
+      {Bachelor of Applied Science | Engineering Science (GPA: 4.0)}{2025 - 2030}
+      \vspace{2pt}
+      \item \small{\textit{\textbf{Research Interests:} Control systems, robotics autonomy, state estimation, applied optimization}}
+  \resumeSubHeadingListEnd
+%-------------------------------------------
+\end{document}
