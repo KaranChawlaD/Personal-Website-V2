@@ -216,10 +216,10 @@ export function PersonalWebsiteClient({
         {/* About — hero + bio + skills */}
         <section
           id="about"
-          className={`flex flex-col justify-start sm:justify-center ${sectionScrollMt} border-b border-border/30 px-4 pt-4 pb-14 min-h-[calc(100svh-var(--site-header-height,7.25rem))] sm:px-6 sm:pt-20 sm:pb-20 lg:px-8`}
+          className={`relative overflow-hidden flex flex-col justify-start sm:justify-center ${sectionScrollMt} border-b border-border/30 px-4 pt-4 pb-14 min-h-[calc(100svh-var(--site-header-height,7.25rem))] sm:px-6 sm:pt-20 sm:pb-20 lg:px-8`}
           aria-label="About Karan Chawla"
         >
-          <div className="mx-auto max-w-6xl">
+          <div className="relative z-10 mx-auto max-w-6xl">
             <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] md:items-center md:gap-12 lg:gap-16">
               <div className="space-y-6">
                 <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -300,9 +300,8 @@ export function PersonalWebsiteClient({
               </div>
             </div> */}
           </div>
+          <RobotDriveAnimation />
         </section>
-
-        <RobotDriveAnimation />
 
         {/* Experience — timeline */}
         <section

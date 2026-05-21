@@ -9,7 +9,7 @@ const ROBOT_FRAMES = [
 export function RobotDriveAnimation() {
   return (
     <div
-      className="robot-drive-lane relative w-full overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="robot-drive-lane pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-0 overflow-visible"
       aria-hidden
     >
       <div className="robot-drive-motion">
