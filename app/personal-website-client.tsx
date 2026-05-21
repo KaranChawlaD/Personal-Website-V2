@@ -299,8 +299,11 @@ export function PersonalWebsiteClient({
                 ))}
               </div>
             </div> */}
+            <div className="sm:hidden">
+              <RobotDriveAnimation layout="inline" />
+            </div>
           </div>
-          <RobotDriveAnimation />
+          <RobotDriveAnimation layout="overlay" />
         </section>
 
         {/* Experience — timeline */}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const ROBOT_FRAMES = [
   { src: "/cartoon_robot_1.png", width: 458, height: 445 },
@@ -19,20 +20,37 @@ function spriteWidthAtHeight(heightPx: number) {
 const SPRITE_WIDTH = spriteWidthAtHeight(DISPLAY_HEIGHT.default);
 const SPRITE_WIDTH_SM = spriteWidthAtHeight(DISPLAY_HEIGHT.sm);
 
-export function RobotDriveAnimation() {
+const spriteStyle = {
+  "--robot-sprite-w": `${SPRITE_WIDTH}px`,
+  "--robot-sprite-w-sm": `${SPRITE_WIDTH_SM}px`,
+} as React.CSSProperties;
+
+type RobotDriveAnimationProps = {
+  /** In-flow below hero (mobile). Overlay at section bottom (desktop). */
+  layout: "inline" | "overlay";
+};
+
+export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
+  const isOverlay = layout === "overlay";
+
   return (
     <div
-      className="robot-drive-lane pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-0 overflow-visible"
+      className={cn(
+        "robot-drive-lane pointer-events-none z-[1] overflow-visible",
+        isOverlay
+          ? "robot-drive-lane--overlay absolute inset-x-0 bottom-0 hidden h-0 sm:block"
+          : "relative mt-6 h-20 w-[calc(100%+2rem)] max-w-none -mx-4"
+      )}
       aria-hidden
     >
       <div
-        className="robot-drive-motion h-20 sm:h-28"
-        style={
-          {
-            "--robot-sprite-w": `${SPRITE_WIDTH}px`,
-            "--robot-sprite-w-sm": `${SPRITE_WIDTH_SM}px`,
-          } as React.CSSProperties
-        }
+        className={cn(
+          "robot-drive-motion",
+          isOverlay
+            ? "robot-drive-motion--overlay absolute h-28"
+            : "relative h-20"
+        )}
+        style={spriteStyle}
       >
         <div className="robot-drive-sprite relative h-full">
           {ROBOT_FRAMES.map((frame, index) => (

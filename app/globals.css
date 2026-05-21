@@ -191,8 +191,6 @@
 
 @layer utilities {
   .robot-drive-motion {
-    position: absolute;
-    bottom: 1.25rem;
     left: 0;
     width: var(--robot-sprite-w);
     animation: robot-drive-across 14s linear infinite;
@@ -203,13 +201,17 @@
     width: var(--robot-sprite-w);
   }
 
+  .robot-drive-motion--overlay {
+    bottom: 1.25rem;
+  }
+
   @media (min-width: 640px) {
-    .robot-drive-motion {
+    .robot-drive-motion--overlay {
       bottom: 1.75rem;
       width: var(--robot-sprite-w-sm);
     }
 
-    .robot-drive-sprite {
+    .robot-drive-lane--overlay .robot-drive-sprite {
       width: var(--robot-sprite-w-sm);
     }
   }
@@ -227,19 +229,19 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .robot-drive-motion {
+    .robot-drive-motion--overlay {
       animation: none;
       left: 50%;
       transform: translateX(-50%);
     }
 
-    .robot-drive-frame-2,
-    .robot-drive-frame-3 {
+    .robot-drive-lane--overlay .robot-drive-frame-2,
+    .robot-drive-lane--overlay .robot-drive-frame-3 {
       animation: none;
       opacity: 0;
     }
 
-    .robot-drive-frame-1 {
+    .robot-drive-lane--overlay .robot-drive-frame-1 {
       animation: none;
       opacity: 1;
     }
