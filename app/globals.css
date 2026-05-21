@@ -143,7 +143,107 @@
   --sidebar-ring: oklch(0.58 0.06 106);
 }
 
+@keyframes robot-drive-across {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(calc(100vw + 120%));
+  }
+}
+
+@keyframes robot-frame-1 {
+  0%,
+  33.32% {
+    opacity: 1;
+  }
+  33.33%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes robot-frame-2 {
+  0%,
+  33.32% {
+    opacity: 0;
+  }
+  33.33%,
+  66.65% {
+    opacity: 1;
+  }
+  66.66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes robot-frame-3 {
+  0%,
+  66.65% {
+    opacity: 0;
+  }
+  66.66%,
+  100% {
+    opacity: 1;
+  }
+}
+
 @layer utilities {
+  .robot-drive-lane {
+    min-height: 6.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .robot-drive-lane {
+      min-height: 8rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  .robot-drive-motion {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    translate: 0 -50%;
+    animation: robot-drive-across 14s linear infinite;
+    will-change: transform;
+  }
+
+  .robot-drive-frame-1 {
+    animation: robot-frame-1 0.72s steps(1) infinite;
+  }
+
+  .robot-drive-frame-2 {
+    animation: robot-frame-2 0.72s steps(1) infinite;
+  }
+
+  .robot-drive-frame-3 {
+    animation: robot-frame-3 0.72s steps(1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .robot-drive-motion {
+      animation: none;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .robot-drive-frame-2,
+    .robot-drive-frame-3 {
+      animation: none;
+      opacity: 0;
+    }
+
+    .robot-drive-frame-1 {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
   .shadow-surface-header {
     box-shadow: var(--shadow-surface-header);
   }

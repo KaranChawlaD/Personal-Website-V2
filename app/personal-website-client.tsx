@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 // import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AnimatedCard } from "@/components/animated-card";
+import { RobotDriveAnimation } from "@/components/robot-drive-animation";
 import {
   Mail,
   MapPin,
@@ -300,6 +301,8 @@ export function PersonalWebsiteClient({
             </div> */}
           </div>
         </section>
+
+        <RobotDriveAnimation />
 
         {/* Experience — timeline */}
         <section
