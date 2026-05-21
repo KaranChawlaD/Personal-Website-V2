@@ -194,13 +194,23 @@
     position: absolute;
     bottom: 1.25rem;
     left: 0;
+    width: var(--robot-sprite-w);
     animation: robot-drive-across 14s linear infinite;
     will-change: transform;
+  }
+
+  .robot-drive-sprite {
+    width: var(--robot-sprite-w);
   }
 
   @media (min-width: 640px) {
     .robot-drive-motion {
       bottom: 1.75rem;
+      width: var(--robot-sprite-w-sm);
+    }
+
+    .robot-drive-sprite {
+      width: var(--robot-sprite-w-sm);
     }
   }
 
