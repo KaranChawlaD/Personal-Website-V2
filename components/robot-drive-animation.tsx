@@ -13,7 +13,7 @@ export function RobotDriveAnimation() {
       aria-hidden
     >
       <div className="robot-drive-motion">
-        <div className="robot-drive-sprite relative h-20 w-[5.5rem] sm:h-28 sm:w-[7.5rem]">
+        <div className="robot-drive-sprite relative h-20 sm:h-28">
           {ROBOT_FRAMES.map((frame, index) => (
             <Image
               key={frame.src}
@@ -21,8 +21,8 @@ export function RobotDriveAnimation() {
               alt=""
               width={frame.width}
               height={frame.height}
-              className={`robot-drive-frame robot-drive-frame-${index + 1} absolute inset-0 h-full w-full object-contain object-left`}
-              sizes="(max-width: 640px) 88px, 120px"
+              className={`robot-drive-frame robot-drive-frame-${index + 1} absolute left-0 top-0 h-full w-auto max-w-none`}
+              sizes="(max-width: 640px) 80px, 112px"
               priority={index === 0}
             />
           ))}
