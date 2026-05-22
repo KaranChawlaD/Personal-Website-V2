@@ -193,7 +193,8 @@
   .robot-drive-motion {
     left: 0;
     width: var(--robot-sprite-w);
-    animation: robot-drive-across 14s linear infinite;
+    animation: robot-drive-across var(--robot-drive-duration, 14s) linear
+      infinite;
     will-change: transform;
   }
 
@@ -217,15 +218,18 @@
   }
 
   .robot-drive-frame-1 {
-    animation: robot-frame-1 0.72s steps(1) infinite;
+    animation: robot-frame-1 var(--robot-frame-duration, 0.72s) steps(1)
+      infinite;
   }
 
   .robot-drive-frame-2 {
-    animation: robot-frame-2 0.72s steps(1) infinite;
+    animation: robot-frame-2 var(--robot-frame-duration, 0.72s) steps(1)
+      infinite;
   }
 
   .robot-drive-frame-3 {
-    animation: robot-frame-3 0.72s steps(1) infinite;
+    animation: robot-frame-3 var(--robot-frame-duration, 0.72s) steps(1)
+      infinite;
   }
 
   @media (prefers-reduced-motion: reduce) {

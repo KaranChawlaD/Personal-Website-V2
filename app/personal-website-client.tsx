@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 // import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AnimatedCard } from "@/components/animated-card";
-import { RobotDriveAnimation } from "@/components/robot-drive-animation";
+import {
+  RobotDriveAnimation,
+  RobotDriveSpeedProvider,
+} from "@/components/robot-drive-animation";
 import {
   Mail,
   MapPin,
@@ -219,6 +222,7 @@ export function PersonalWebsiteClient({
           className={`relative overflow-hidden flex flex-col justify-start sm:justify-center ${sectionScrollMt} border-b border-border/30 px-4 pt-4 pb-14 min-h-[calc(100svh-var(--site-header-height,7.25rem))] sm:px-6 sm:pt-20 sm:pb-20 lg:px-8`}
           aria-label="About Karan Chawla"
         >
+          <RobotDriveSpeedProvider>
           <div className="relative z-10 mx-auto max-w-6xl">
             <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] md:items-center md:gap-12 lg:gap-16">
               <div className="space-y-6">
@@ -304,6 +308,7 @@ export function PersonalWebsiteClient({
             </div>
           </div>
           <RobotDriveAnimation layout="overlay" />
+          </RobotDriveSpeedProvider>
         </section>
 
         {/* Experience — timeline */}
