@@ -218,6 +218,23 @@
     animation: robot-frame-3 0.72s steps(1) infinite;
   }
 
+  .robot-drive-hint {
+    left: 50%;
+    transform: translate(
+      calc(var(--robot-sprite-w) / 2 - 100%),
+      calc(-100% - 0.35rem)
+    );
+  }
+
+  @media (min-width: 640px) {
+    .robot-drive-lane--overlay .robot-drive-hint {
+      transform: translate(
+        calc(var(--robot-sprite-w-sm) / 2 - 100%),
+        calc(-100% - 0.35rem)
+      );
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .robot-drive-motion--overlay {
       animation: none;

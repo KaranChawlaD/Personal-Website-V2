@@ -189,15 +189,15 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
             atMaxSpeed ? "Robot is at max speed" : "Speed up the robot"
           }
         >
-          {!atMaxSpeed && (
-            <span
-              className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-primary/35 bg-primary px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground opacity-0 shadow-[0_4px_14px_-6px_rgba(110,129,55,0.35)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
-              aria-hidden
-            >
-              click me
-            </span>
-          )}
           <div className="robot-drive-sprite relative h-full">
+            {!atMaxSpeed && (
+              <span
+                className="robot-drive-hint pointer-events-none absolute top-0 z-10 whitespace-nowrap rounded-full border border-primary/35 bg-primary px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground opacity-0 shadow-[0_4px_14px_-6px_rgba(110,129,55,0.35)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                aria-hidden
+              >
+                click me
+              </span>
+            )}
             {ROBOT_FRAMES.map((frame, index) => (
               <Image
                 key={frame.src}
