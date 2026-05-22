@@ -65,6 +65,7 @@ function applyFramePlaybackRate(motion: HTMLElement, rate: number) {
 type RobotDriveSpeedContextValue = {
   speedMultiplier: number;
   onSpeedUp: () => void;
+  onReset: () => void;
 };
 
 const RobotDriveSpeedContext = createContext<RobotDriveSpeedContextValue | null>(
@@ -80,8 +81,14 @@ export function RobotDriveSpeedProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
+  const onReset = useCallback(() => {
+    setSpeedMultiplier(1);
+  }, []);
+
   return (
-    <RobotDriveSpeedContext.Provider value={{ speedMultiplier, onSpeedUp }}>
+    <RobotDriveSpeedContext.Provider
+      value={{ speedMultiplier, onSpeedUp, onReset }}
+    >
       {children}
     </RobotDriveSpeedContext.Provider>
   );
@@ -97,7 +104,7 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
     throw new Error("RobotDriveAnimation must be used within RobotDriveSpeedProvider");
   }
 
-  const { speedMultiplier, onSpeedUp } = ctx;
+  const { speedMultiplier, onSpeedUp, onReset } = ctx;
   const isOverlay = layout === "overlay";
   const atMaxSpeed = speedMultiplier >= MAX_SPEED_MULTIPLIER;
   const motionRef = useRef<HTMLDivElement>(null);
@@ -143,16 +150,18 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
   }, [layout]);
 
   const handleClick = () => {
-    if (atMaxSpeed) return;
+    const motion = motionRef.current;
+
+    if (atMaxSpeed) {
+      speedRef.current = 1;
+      if (motion) applyFramePlaybackRate(motion, 1);
+      onReset();
+      return;
+    }
 
     const next = Math.min(speedMultiplier * 1.5, MAX_SPEED_MULTIPLIER);
     speedRef.current = next;
-
-    const motion = motionRef.current;
-    if (motion) {
-      applyFramePlaybackRate(motion, next);
-    }
-
+    if (motion) applyFramePlaybackRate(motion, next);
     onSpeedUp();
   };
 
@@ -183,21 +192,18 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
         <button
           type="button"
           onClick={handleClick}
-          disabled={atMaxSpeed}
-          className="group relative h-full w-full cursor-pointer pointer-events-auto border-0 bg-transparent p-0 disabled:cursor-default"
+          className="group relative h-full w-full cursor-pointer pointer-events-auto border-0 bg-transparent p-0"
           aria-label={
-            atMaxSpeed ? "Robot is at max speed" : "Speed up the robot"
+            atMaxSpeed ? "Reset robot speed" : "Speed up the robot"
           }
         >
           <div className="robot-drive-sprite relative h-full">
-            {!atMaxSpeed && (
-              <span
-                className="robot-drive-hint pointer-events-none absolute top-0 z-10 whitespace-nowrap rounded-full border border-primary/35 bg-primary px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground opacity-0 shadow-[0_4px_14px_-6px_rgba(110,129,55,0.35)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
-                aria-hidden
-              >
-                click me
-              </span>
-            )}
+            <span
+              className="robot-drive-hint pointer-events-none absolute top-0 z-10 whitespace-nowrap rounded-full border border-primary/35 bg-primary px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground opacity-0 shadow-[0_4px_14px_-6px_rgba(110,129,55,0.35)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+              aria-hidden
+            >
+              {atMaxSpeed ? "reset" : "click me"}
+            </span>
             {ROBOT_FRAMES.map((frame, index) => (
               <Image
                 key={frame.src}
