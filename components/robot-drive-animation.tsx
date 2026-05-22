@@ -4,6 +4,9 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -17,8 +20,7 @@ const ROBOT_FRAMES = [
 ] as const;
 
 const DISPLAY_HEIGHT = { default: 80, sm: 112 } as const;
-const BASE_DRIVE_DURATION_S = 14;
-const BASE_FRAME_DURATION_S = 0.72;
+const LAP_DURATION_MS = 14_000;
 const MAX_SPEED_MULTIPLIER = 4;
 
 function spriteWidthAtHeight(heightPx: number) {
@@ -31,6 +33,34 @@ function spriteWidthAtHeight(heightPx: number) {
 
 const SPRITE_WIDTH = spriteWidthAtHeight(DISPLAY_HEIGHT.default);
 const SPRITE_WIDTH_SM = spriteWidthAtHeight(DISPLAY_HEIGHT.sm);
+
+function translateForProgress(progress: number, spriteWidth: number) {
+  const start = -1.2 * spriteWidth;
+  const end = window.innerWidth + 1.2 * spriteWidth;
+  return start + progress * (end - start);
+}
+
+function setAnimationPlaybackRate(anim: Animation, rate: number) {
+  try {
+    anim.updatePlaybackRate(rate);
+  } catch {
+    anim.playbackRate = rate;
+  }
+}
+
+function applyFramePlaybackRate(motion: HTMLElement, rate: number) {
+  for (const anim of motion.getAnimations({ subtree: true })) {
+    const effect = anim.effect;
+    if (!(effect instanceof KeyframeEffect)) continue;
+    const target = effect.target;
+    if (
+      target instanceof HTMLElement &&
+      target.classList.contains("robot-drive-frame")
+    ) {
+      setAnimationPlaybackRate(anim, rate);
+    }
+  }
+}
 
 type RobotDriveSpeedContextValue = {
   speedMultiplier: number;
@@ -69,15 +99,66 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
 
   const { speedMultiplier, onSpeedUp } = ctx;
   const isOverlay = layout === "overlay";
-  const driveDuration = BASE_DRIVE_DURATION_S / speedMultiplier;
-  const frameDuration = BASE_FRAME_DURATION_S / speedMultiplier;
   const atMaxSpeed = speedMultiplier >= MAX_SPEED_MULTIPLIER;
+  const motionRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef(0);
+  const speedRef = useRef(1);
+
+  speedRef.current = speedMultiplier;
+
+  useLayoutEffect(() => {
+    const motion = motionRef.current;
+    if (!motion) return;
+    applyFramePlaybackRate(motion, speedMultiplier);
+  }, [speedMultiplier]);
+
+  useEffect(() => {
+    const motion = motionRef.current;
+    if (!motion) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reducedMotion) return;
+
+    let last = performance.now();
+    let raf = 0;
+
+    const tick = (now: number) => {
+      const dt = Math.min(now - last, 100);
+      last = now;
+
+      const lapMs = LAP_DURATION_MS / speedRef.current;
+      progressRef.current = (progressRef.current + dt / lapMs) % 1;
+
+      const spriteWidth = motion.offsetWidth || SPRITE_WIDTH;
+      const x = translateForProgress(progressRef.current, spriteWidth);
+      motion.style.transform = `translateX(${x}px)`;
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [layout]);
+
+  const handleClick = () => {
+    if (atMaxSpeed) return;
+
+    const next = Math.min(speedMultiplier * 1.5, MAX_SPEED_MULTIPLIER);
+    speedRef.current = next;
+
+    const motion = motionRef.current;
+    if (motion) {
+      applyFramePlaybackRate(motion, next);
+    }
+
+    onSpeedUp();
+  };
 
   const motionStyle = {
     "--robot-sprite-w": `${SPRITE_WIDTH}px`,
     "--robot-sprite-w-sm": `${SPRITE_WIDTH_SM}px`,
-    "--robot-drive-duration": `${driveDuration}s`,
-    "--robot-frame-duration": `${frameDuration}s`,
   } as React.CSSProperties;
 
   return (
@@ -90,6 +171,7 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
       )}
     >
       <div
+        ref={motionRef}
         className={cn(
           "robot-drive-motion",
           isOverlay
@@ -100,19 +182,21 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
       >
         <button
           type="button"
-          onClick={onSpeedUp}
+          onClick={handleClick}
           disabled={atMaxSpeed}
           className="group relative h-full w-full cursor-pointer pointer-events-auto border-0 bg-transparent p-0 disabled:cursor-default"
           aria-label={
             atMaxSpeed ? "Robot is at max speed" : "Speed up the robot"
           }
         >
-          <span
-            className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-primary/35 bg-primary px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground opacity-0 shadow-[0_4px_14px_-6px_rgba(110,129,55,0.35)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 disabled:group-hover:opacity-0"
-            aria-hidden
-          >
-            click me
-          </span>
+          {!atMaxSpeed && (
+            <span
+              className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full border border-primary/35 bg-primary px-2.5 py-1 font-heading text-xs font-semibold text-primary-foreground opacity-0 shadow-[0_4px_14px_-6px_rgba(110,129,55,0.35)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+              aria-hidden
+            >
+              click me
+            </span>
+          )}
           <div className="robot-drive-sprite relative h-full">
             {ROBOT_FRAMES.map((frame, index) => (
               <Image
