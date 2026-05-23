@@ -222,6 +222,10 @@ export function PersonalWebsiteClient({
           className={`relative overflow-hidden flex flex-col justify-start sm:justify-center ${sectionScrollMt} border-b border-border/30 px-4 pt-4 pb-14 min-h-[calc(100svh-var(--site-header-height,7.25rem))] sm:px-6 sm:pt-20 sm:pb-20 lg:px-8`}
           aria-label="About Karan Chawla"
         >
+          <div
+            className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_105%_62%_at_50%_-10%,rgb(110_129_55_/_0.12),transparent_56%),radial-gradient(ellipse_95%_48%_at_50%_100%,rgb(200_240_80_/_0.07),transparent_70%)] dark:bg-[radial-gradient(ellipse_95%_56%_at_50%_0%,rgb(143_161_73_/_0.14),transparent_54%),radial-gradient(ellipse_90%_44%_at_50%_100%,rgb(190_235_95_/_0.08),transparent_72%)]"
+            aria-hidden
+          />
           <RobotDriveSpeedProvider>
           <div className="relative z-10 mx-auto max-w-6xl">
             <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] md:items-center md:gap-12 lg:gap-16">
