@@ -19,6 +19,7 @@ import {
   Instagram,
   // FileText,
   ArrowUpRight,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -251,7 +252,7 @@ export function PersonalWebsiteClient({
                   around STEM and learning through collaboration.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3 pt-2 sm:justify-start">
-                  {/* <Button asChild size="lg" className="rounded-full px-6">
+                  <Button asChild size="lg" className="rounded-full px-6">
                     <a
                       href="/Karan_Chawla_Resume.pdf"
                       target="_blank"
@@ -260,7 +261,7 @@ export function PersonalWebsiteClient({
                       <FileText className="size-4" />
                       Resume
                     </a>
-                  </Button> */}
+                  </Button>
                   <Button
                     type="button"
                     variant="outline"
