@@ -36,13 +36,14 @@
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{5pt}
 
 % Adjust margins
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\topmargin}{-.65in}
+\addtolength{\textheight}{1.3in}
 
 \urlstyle{same}
 
@@ -54,8 +55,8 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{UofTBlue}\titlerule \vspace{-5pt}]
+  \vspace{-7pt}\scshape\raggedright\large
+}{}{0em}{}[\color{UofTBlue}\titlerule \vspace{-7pt}]
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -85,30 +86,30 @@
 
 \newcommand{\resumeItem}[1]{
   \item\small{
-    {#1 \vspace{2pt}}
+    {#1 \vspace{0pt}}
   }
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{2pt}\item
+  \vspace{0pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
@@ -118,7 +119,7 @@
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
 
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,7 +129,7 @@
 
 \begin{center}
     \textbf{\Huge \scshape Karan Chawla Dora} \\ \vspace{1pt}
-    \small  \href{mailto:karan.chawlad@gmail.com}{\textit{karan.chawlad@gmail.com \ExternalLink}} $|$ 
+    \small \href{mailto:karan.chawlad@gmail.com}{\textit{karan.chawlad@gmail.com \ExternalLink}} $|$ 
     {(613)-462-4971} $|$ 
     \href{https://linkedin.com/in/karan-chawla-dora/}{\faLinkedin\, \textit{LinkedIn \ExternalLink}} $|$
     \href{https://github.com/KaranChawlaD}{\faGithub\, \textit{GitHub \ExternalLink}} $|$
@@ -153,17 +154,17 @@
       {\href{https://www.autodrive.utoronto.ca/}{SAE AutoDrive - Toronto Autonomous Vehicle Team (aUToronto) \ExternalLink}}{Sep. 2025 -- Present}
       {State Estimation Developer}{Toronto, ON}
       \resumeItemListStart
-        \resumeItem{Developed a lane localization model to maintain vehicle positional accuracy during GPS outages, ensuring continuous and reliable autonomous navigation.}
-        \resumeItem{Implemented an Iterated Extended Kalman Filter (\textbf{IEKF}) to process over 100 lane updates per 5 meters, optimizing real-time state estimation.}
-        \resumeItem{Utilized \textbf{ROS} to process bag files, conduct data analysis, and validate state estimation algorithms across simulated and physical testing environments.}
+        \resumeItem{Developed a lane-based localization pipeline to preserve autonomous vehicle pose accuracy during GPS dropouts.}
+        \resumeItem{Implemented an Iterated Extended Kalman Filter (\textbf{IEKF}) processing 100+ lane observations per 5 meters for real-time state estimation.}
+        \resumeItem{Built \textbf{ROS2} bag analysis and validation workflows to evaluate estimation performance across simulation and vehicle tests.}
     \resumeItemListEnd
     \resumeSubheading
       {\href{https://www.syrc.ca/}{FIRST Robotics Competition \ExternalLink}}{Jul. 2021 -- Jun. 2025}
       {Robotics Team Captain \& Software Development Lead}{Ottawa, ON}
       \resumeItemListStart
-        \resumeItem{Founding member and leader of a 90+ high school student team competing at a national level, qualifying for the \textbf{World Championship} and \textbf{2x Finalists at Provincial Championships}.}
-        \resumeItem{Developed accurate autonomous routines in \textbf{C++}, leveraging \textbf{computer vision} and \textbf{odometry}.}
-        \resumeItem{Enhanced robot performance and precision using feedforward and PID feedback \textbf{control systems}.}
+        \resumeItem{Founded and led a 90+ student robotics team to national-level competition, including \textbf{World Championship} qualification and \textbf{2x Provincial Finalist} finishes.}
+        \resumeItem{Developed autonomous routines in \textbf{C++} using computer vision, odometry, and path planning for reliable match execution.}
+        \resumeItem{Improved robot precision by tuning feedforward models and PID feedback \textbf{control systems} for drivetrain and mechanism control.}
     \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -172,23 +173,23 @@
 \section{\textbf{Research \& Publications}}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{Researcher @ Autonomous Space Robotics Lab (ASRL)} $|$ \emph{Supervisor: \textbf{Tim Barfoot}}}{May 2026 - Present}
+          {\textbf{Researcher @ Autonomous Space Robotics Lab (ASRL)} $|$ \emph{Supervisor: \textbf{Tim Barfoot}}}{May 2026 -- Present}
           \resumeItemListStart
-            \resumeItem{Implementing a mesh radio network for long distance communication of a multi-robot fleet}
+            \resumeItem{Implementing a mesh radio network to enable long-range communication and coordination for multi-robot fleets.}
           \resumeItemListEnd
         
-      \resumeProjectHeading{\href{https://ecs.confex.com/ecs/prime2024/meetingapp.cgi/Paper/193950}{\textbf {Bruce Lab | University of Ottawa \ExternalLink}} $|$ \emph{Research Assistant}}{Aug. 2024}{}
+      \resumeProjectHeading{\href{https://ecs.confex.com/ecs/prime2024/meetingapp.cgi/Paper/193950}{\textbf{Bruce Lab | University of Ottawa \ExternalLink}} $|$ \emph{Research Assistant}}{Aug. 2024}
       \resumeItemListStart
-        \resumeItem{Reduced transient time by 80\% and steady-state error by 40\% by implementing PID control systems in C++ to stabilize current and voltage in platinum-nickel electrodeposition for Fuel Cell Electric Vehicles.}
-        \resumeItem{Reduced calibration time by one-third, developing a Python user interface to conduct trials \textbf{autonomously}.}
-        \resumeItem{Expanded trial voltage limits by 5x, refining an \textbf{Arduino}-based potentiostat electric circuit.}
+        \resumeItem{Reduced transient time by 80\% and steady-state error by 40\% by implementing \textbf{C++} PID controllers for platinum-nickel electrodeposition current and voltage stabilization.}
+        \resumeItem{Cut calibration time by one-third by developing a \textbf{Python} interface for autonomous trial execution and data collection.}
+        \resumeItem{Expanded operating voltage range by 5x by refining an \textbf{Arduino}-based potentiostat circuit and control workflow.}
       \resumeItemListEnd
 
     \resumeProjectHeading
-      {\href{https://www.craiedl.ca/publications/training-critical-engineers}{\textbf {Canadian Robotics and Artificial Intelligence Ethics Design Lab \ExternalLink}} $|$ \emph{Robotics Research}}{Aug. 2024}
+      {\href{https://www.craiedl.ca/publications/training-critical-engineers}{\textbf{Canadian Robotics and Artificial Intelligence Ethics Design Lab \ExternalLink}} $|$ \emph{Robotics Research}}{Aug. 2024}
       \resumeItemListStart
-        \resumeItem{Accelerated project timeline by 50\% by characterizing DJI's Robomaster S1 in a simulative environment.}
-        \resumeItem{Achieved 1-second target tracking by implementing computer vision models with Python \textbf{machine learning}.}
+        \resumeItem{Accelerated project timeline by 50\% by characterizing DJI Robomaster S1 behavior in a simulated robotics environment.}
+        \resumeItem{Achieved 1-second target tracking by implementing \textbf{Python} computer vision and machine learning models.}
       \resumeItemListEnd
     \resumeSubHeadingListEnd
 %
@@ -196,9 +197,9 @@
 \section{\textbf{Technical Skills}}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: Python, C/C++, Java, Javascript, Typescript, HTML, CSS} \\
-     \textbf{Robotics \& Control}{: ROS, PID control, State Estimation, Sensor Fusion} \\
-     \textbf{Tools \& Libraries}{: NumPy, Matplotlib, pandas, Arduino, Git, Next.js}
+     \textbf{Languages}{: Python, C/C++, Java, JavaScript, TypeScript, HTML, CSS} \\
+     \textbf{Robotics \& Control}{: ROS, state estimation, sensor fusion, PID control, odometry, computer vision} \\
+     \textbf{Tools \& Libraries}{: Git, Arduino, NumPy, pandas, Matplotlib, Next.js}
     }}
  \end{itemize}
 
@@ -210,12 +211,12 @@
 \section{\textbf{Awards}}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{HackTheNorth 2024 2x Award Winner}{: Best Use of MongoDB, SymphonicLabs} \\
-     \textbf{2x FRC Provincial Finalists}{: FIRST Robotics 2023 , 2024} \\
+     \textbf{HackTheNorth 2024 2x Award Winner}{: Best Use of MongoDB, Symphonic Labs} \\
+     \textbf{2x FRC Provincial Finalist}{: FIRST Robotics 2023, 2024} \\
      \textbf{Harvard-MIT Math Tournament}{: Qualified Participant} \\
      \textbf{FIRST Alumni Entrance Scholarship}{: Value of \$15,000} \\
-     \textbf{Dean's List Semi-finalist}{: First Robotics Competition} \\
-     \textbf{University of Toronto Excellence Award (UTEA)}{: For Summer Research Valued at \$7,000} \\
+     \textbf{Dean's List Semi-Finalist}{: FIRST Robotics Competition} \\
+     \textbf{University of Toronto Excellence Award (UTEA)}{: Summer research award valued at \$7,000} \\
     }}
  \end{itemize}
 
@@ -224,9 +225,9 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {University of Toronto}{Toronto, ON}
-      {Bachelor of Applied Science | Engineering Science (cGPA: 3.95/4.0)}{2025 - 2030}
+      {Bachelor of Applied Science | Engineering Science (cGPA: 3.95/4.0)}{2025 -- 2030}
       \vspace{2pt}
-      \item \small{\textit{\textbf{Research Interests:} Control systems, robotics autonomy, state estimation}}
+      \item \small{\textit{\textbf{Research Interests:} control systems, robot autonomy, state estimation}}
   \resumeSubHeadingListEnd
 %-------------------------------------------
 \end{document}
