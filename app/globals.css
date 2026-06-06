@@ -191,17 +191,12 @@
     width: var(--robot-sprite-w);
   }
 
-  .robot-drive-motion--overlay {
-    bottom: 1.25rem;
-  }
-
   @media (min-width: 640px) {
-    .robot-drive-motion--overlay {
-      bottom: 1.75rem;
+    .robot-drive-motion {
       width: var(--robot-sprite-w-sm);
     }
 
-    .robot-drive-lane--overlay .robot-drive-sprite {
+    .robot-drive-sprite {
       width: var(--robot-sprite-w-sm);
     }
   }
@@ -227,7 +222,7 @@
   }
 
   @media (min-width: 640px) {
-    .robot-drive-lane--overlay .robot-drive-hint {
+    .robot-drive-hint {
       transform: translate(
         calc(var(--robot-sprite-w-sm) / 2 - 100%),
         calc(-100% - 0.35rem)
@@ -236,19 +231,18 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .robot-drive-motion--overlay {
-      animation: none;
+    .robot-drive-motion {
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) !important;
     }
 
-    .robot-drive-lane--overlay .robot-drive-frame-2,
-    .robot-drive-lane--overlay .robot-drive-frame-3 {
+    .robot-drive-frame-2,
+    .robot-drive-frame-3 {
       animation: none;
       opacity: 0;
     }
 
-    .robot-drive-lane--overlay .robot-drive-frame-1 {
+    .robot-drive-frame-1 {
       animation: none;
       opacity: 1;
     }

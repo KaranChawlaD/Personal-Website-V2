@@ -308,11 +308,11 @@ export function PersonalWebsiteClient({
                 ))}
               </div>
             </div> */}
-            <div className="sm:hidden">
-              <RobotDriveAnimation layout="inline" />
+
+            <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+              <RobotDriveAnimation />
             </div>
           </div>
-          <RobotDriveAnimation layout="overlay" />
           </RobotDriveSpeedProvider>
         </section>
 

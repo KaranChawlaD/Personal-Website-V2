@@ -11,7 +11,6 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 const ROBOT_FRAMES = [
   { src: "/cartoon_robot_1.png", width: 458, height: 445 },
@@ -94,18 +93,13 @@ export function RobotDriveSpeedProvider({ children }: { children: ReactNode }) {
   );
 }
 
-type RobotDriveAnimationProps = {
-  layout: "inline" | "overlay";
-};
-
-export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
+export function RobotDriveAnimation() {
   const ctx = useContext(RobotDriveSpeedContext);
   if (!ctx) {
     throw new Error("RobotDriveAnimation must be used within RobotDriveSpeedProvider");
   }
 
   const { speedMultiplier, onSpeedUp, onReset } = ctx;
-  const isOverlay = layout === "overlay";
   const atMaxSpeed = speedMultiplier >= MAX_SPEED_MULTIPLIER;
   const motionRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
@@ -147,7 +141,7 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [layout]);
+  }, []);
 
   const handleClick = () => {
     const motion = motionRef.current;
@@ -171,28 +165,16 @@ export function RobotDriveAnimation({ layout }: RobotDriveAnimationProps) {
   } as React.CSSProperties;
 
   return (
-    <div
-      className={cn(
-        "robot-drive-lane z-[1] overflow-visible",
-        isOverlay
-          ? "robot-drive-lane--overlay pointer-events-none absolute inset-x-0 bottom-0 hidden h-0 sm:block"
-          : "relative mt-6 h-20 w-[calc(100%+2rem)] max-w-none -mx-4"
-      )}
-    >
+    <div className="robot-drive-lane relative z-[1] mt-8 h-20 w-full shrink-0 overflow-visible sm:mt-10 sm:h-28">
       <div
         ref={motionRef}
-        className={cn(
-          "robot-drive-motion",
-          isOverlay
-            ? "robot-drive-motion--overlay absolute h-28"
-            : "relative h-20"
-        )}
+        className="robot-drive-motion relative h-full"
         style={motionStyle}
       >
         <button
           type="button"
           onClick={handleClick}
-          className="group relative h-full w-full cursor-pointer pointer-events-auto border-0 bg-transparent p-0"
+          className="group relative h-full w-full cursor-pointer border-0 bg-transparent p-0"
           aria-label={
             atMaxSpeed ? "Reset robot speed" : "Speed up the robot"
           }
