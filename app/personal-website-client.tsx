@@ -48,6 +48,16 @@ const SECTION_IDS = ["about", "experience", "projects", "contact"] as const;
 const siteGreenWashClassName =
   "bg-[linear-gradient(180deg,rgb(110_129_55_/_0.06)_0%,rgb(200_240_80_/_0.04)_45%,transparent_100%),radial-gradient(ellipse_110%_68%_at_50%_-12%,rgb(110_129_55_/_0.22),transparent_58%),radial-gradient(ellipse_100%_52%_at_50%_100%,rgb(200_240_80_/_0.14),transparent_68%)] dark:bg-[linear-gradient(180deg,rgb(143_161_73_/_0.08)_0%,rgb(190_235_95_/_0.05)_45%,transparent_100%),radial-gradient(ellipse_100%_60%_at_50%_0%,rgb(143_161_73_/_0.26),transparent_56%),radial-gradient(ellipse_95%_48%_at_50%_100%,rgb(190_235_95_/_0.16),transparent_70%)]";
 
+const siteGreenSplotches = [
+  "absolute -left-24 top-[4%] h-72 w-80 rounded-full bg-primary/22 blur-3xl dark:bg-primary/30",
+  "absolute -right-20 top-[18%] h-96 w-[22rem] rounded-full bg-secondary/28 blur-[88px] dark:bg-secondary/18",
+  "absolute left-[38%] top-[34%] h-56 w-64 rounded-full bg-accent/18 blur-3xl dark:bg-accent/14",
+  "absolute -left-16 top-[52%] h-80 w-96 rounded-full bg-primary/16 blur-[96px] dark:bg-primary/24",
+  "absolute -right-12 top-[66%] h-72 w-80 rounded-full bg-secondary/24 blur-3xl dark:bg-secondary/16",
+  "absolute left-[12%] top-[82%] h-64 w-72 rounded-full bg-primary/20 blur-[80px] dark:bg-primary/26",
+  "absolute -right-24 top-[92%] h-56 w-64 rounded-full bg-accent/16 blur-3xl dark:bg-accent/12",
+] as const;
+
 export function PersonalWebsiteClient({
   // skills,
   projects,
@@ -178,6 +188,14 @@ export function PersonalWebsiteClient({
         )}
         aria-hidden
       />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
+        aria-hidden
+      >
+        {siteGreenSplotches.map((className, index) => (
+          <div key={index} className={className} />
+        ))}
+      </div>
       <header
         ref={headerRef}
         className="fixed inset-x-0 top-0 z-50 border-b border-border/45 bg-background/55 shadow-surface-header backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40"
