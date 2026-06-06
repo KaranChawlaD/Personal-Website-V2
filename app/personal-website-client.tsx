@@ -45,6 +45,9 @@ interface PersonalWebsiteClientProps {
 
 const SECTION_IDS = ["about", "experience", "projects", "contact"] as const;
 
+const siteGreenWashClassName =
+  "bg-[linear-gradient(180deg,rgb(110_129_55_/_0.06)_0%,rgb(200_240_80_/_0.04)_45%,transparent_100%),radial-gradient(ellipse_110%_68%_at_50%_-12%,rgb(110_129_55_/_0.22),transparent_58%),radial-gradient(ellipse_100%_52%_at_50%_100%,rgb(200_240_80_/_0.14),transparent_68%)] dark:bg-[linear-gradient(180deg,rgb(143_161_73_/_0.08)_0%,rgb(190_235_95_/_0.05)_45%,transparent_100%),radial-gradient(ellipse_100%_60%_at_50%_0%,rgb(143_161_73_/_0.26),transparent_56%),radial-gradient(ellipse_95%_48%_at_50%_100%,rgb(190_235_95_/_0.16),transparent_70%)]";
+
 export function PersonalWebsiteClient({
   // skills,
   projects,
@@ -167,7 +170,14 @@ export function PersonalWebsiteClient({
     "scroll-mt-[calc(var(--site-header-height,7.25rem)+0.375rem)]";
 
   return (
-    <div className="min-h-screen transition-colors duration-300 bg-background">
+    <div className="relative min-h-screen transition-colors duration-300 bg-background">
+      <div
+        className={cn(
+          "pointer-events-none fixed inset-0 z-0",
+          siteGreenWashClassName
+        )}
+        aria-hidden
+      />
       <header
         ref={headerRef}
         className="fixed inset-x-0 top-0 z-50 border-b border-border/45 bg-background/55 shadow-surface-header backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40"
@@ -215,7 +225,7 @@ export function PersonalWebsiteClient({
 
       <main
         role="main"
-        className="pt-[var(--site-header-height,7.25rem)]"
+        className="relative z-10 pt-[var(--site-header-height,7.25rem)]"
       >
         {/* About — hero + bio + skills */}
         <section
@@ -223,10 +233,6 @@ export function PersonalWebsiteClient({
           className={`relative overflow-hidden flex flex-col justify-start sm:justify-center ${sectionScrollMt} border-b border-border/30 px-4 pt-4 pb-14 min-h-[calc(100svh-var(--site-header-height,7.25rem))] sm:px-6 sm:pt-20 sm:pb-20 lg:px-8`}
           aria-label="About Karan Chawla"
         >
-          <div
-            className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_105%_62%_at_50%_-10%,rgb(110_129_55_/_0.12),transparent_56%),radial-gradient(ellipse_95%_48%_at_50%_100%,rgb(200_240_80_/_0.07),transparent_70%)] dark:bg-[radial-gradient(ellipse_95%_56%_at_50%_0%,rgb(143_161_73_/_0.14),transparent_54%),radial-gradient(ellipse_90%_44%_at_50%_100%,rgb(190_235_95_/_0.08),transparent_72%)]"
-            aria-hidden
-          />
           <RobotDriveSpeedProvider>
           <div className="relative z-10 mx-auto max-w-6xl">
             <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] md:items-center md:gap-12 lg:gap-16">
@@ -369,7 +375,7 @@ export function PersonalWebsiteClient({
         {/* Projects */}
         <section
           id="projects"
-          className={`${sectionScrollMt} border-t border-border/30 bg-muted/35 px-4 py-16 dark:bg-muted/12 sm:px-6 sm:py-20 lg:px-8`}
+          className={`${sectionScrollMt} border-t border-border/30 px-4 py-16 sm:px-6 sm:py-20 lg:px-8`}
           aria-label="Projects"
         >
           <div className="mx-auto max-w-6xl">
@@ -505,7 +511,7 @@ export function PersonalWebsiteClient({
         </section>
       </main>
 
-      <footer className="border-t border-border/30 px-4 py-8 text-center text-sm text-muted-foreground sm:px-6">
+      <footer className="relative z-10 border-t border-border/30 px-4 py-8 text-center text-sm text-muted-foreground sm:px-6">
         <p>© {new Date().getFullYear()} Karan Chawla</p>
       </footer>
 
