@@ -48,11 +48,11 @@ const projects = [
       link: "https://dorahacks.io/buidl/13383",
     },
     {
-      title: "FRC Code 2022-2025",
+      title: "Q-Learning Dashboard",
       description:
-        "2x Provincial Finalists as Software Lead. Code organization for team 8729's FRC Robots.",
-      tech: ["Java", "Control Theory", "WPILib"],
-      link: "https://github.com/Spark-Youth-Robotics-Club-8729",
+        "Tabular Q-learning agent that learns to navigate a custom gridworld. Browser dashboard to design maps, tune hyperparameters, and stream live training over WebSocket. Deployed on Fly.io with a public demo.",
+      tech: ["Python", "FastAPI", "WebSocket", "JavaScript", "Docker"],
+      link: "https://github.com/KaranChawlaD/Q-Learning-Dashboard",
     },
   ];
 
