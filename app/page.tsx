@@ -27,6 +27,13 @@ const skills = [
 
 const projects = [
     {
+      title: "Q-Learning Dashboard",
+      description:
+        "Tabular Q-learning agent that learns to navigate a custom gridworld. Browser dashboard to design maps, tune hyperparameters, and stream live training over WebSocket. Deployed on Fly.io with a public demo.",
+      tech: ["Python", "FastAPI", "WebSocket", "JavaScript", "Docker"],
+      link: "https://github.com/KaranChawlaD/Q-Learning-Dashboard",
+    },
+    {
       title: "Echo — Agentic Voice AI to Get Help",
       description:
         "End-to-end full-stack app to automate outbound phone communications using autonomous voice agents. Integrated Twilio + VAPI for real-time audio streaming, transcription, and LLM-based decision-making during active calls.",
@@ -46,13 +53,6 @@ const projects = [
         "ConvoAI is an AI natural language processing tool that listens in on interviews to give you an edge over your competitors.",
       tech: ["Flask", "HTML/CSS/JS", "OpenAI API"],
       link: "https://dorahacks.io/buidl/13383",
-    },
-    {
-      title: "Q-Learning Dashboard",
-      description:
-        "Tabular Q-learning agent that learns to navigate a custom gridworld. Browser dashboard to design maps, tune hyperparameters, and stream live training over WebSocket. Deployed on Fly.io with a public demo.",
-      tech: ["Python", "FastAPI", "WebSocket", "JavaScript", "Docker"],
-      link: "https://github.com/KaranChawlaD/Q-Learning-Dashboard",
     },
   ];
 
