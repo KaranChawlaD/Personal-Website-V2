@@ -365,7 +365,7 @@ export function PersonalWebsiteClient({
                 Experience
               </h2>
               <p className="mt-3 text-muted-foreground">
-                Roles across autonomous systems, events, research, and robotics
+                Roles across autonomous systems, research, and robotics
                 leadership.
               </p>
             </div>
