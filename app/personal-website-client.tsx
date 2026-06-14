@@ -102,7 +102,7 @@ export function PersonalWebsiteClient({
     };
   }, [mounted]);
 
-  const updateActiveFromScroll = useCallback(() => {
+  const getSectionActivationLine = useCallback(() => {
     let headerOffset = typeof window !== "undefined" && window.innerWidth < 640 ? 124 : 80;
     const raw = getComputedStyle(document.documentElement)
       .getPropertyValue("--site-header-height")
@@ -111,6 +111,21 @@ export function PersonalWebsiteClient({
       const parsed = parseFloat(raw);
       if (Number.isFinite(parsed)) headerOffset = Math.round(parsed);
     }
+
+    // Match section scroll-mt so scrollIntoView landing position activates the tab.
+    const sectionEl = document.getElementById(SECTION_IDS[0]);
+    if (sectionEl) {
+      const scrollMargin = parseFloat(getComputedStyle(sectionEl).scrollMarginTop);
+      if (Number.isFinite(scrollMargin)) {
+        return Math.round(scrollMargin);
+      }
+    }
+
+    return headerOffset + 6;
+  }, []);
+
+  const updateActiveFromScroll = useCallback(() => {
+    const activationLine = getSectionActivationLine();
     const doc = document.documentElement;
     const scrollBottom = window.scrollY + window.innerHeight;
     const scrollThreshold = 16;
@@ -131,12 +146,12 @@ export function PersonalWebsiteClient({
       const el = document.getElementById(id);
       if (!el) continue;
       const top = el.getBoundingClientRect().top;
-      if (top <= headerOffset) {
+      if (top <= activationLine) {
         current = id;
       }
     }
     setActiveSection(current);
-  }, []);
+  }, [getSectionActivationLine]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -162,6 +177,7 @@ export function PersonalWebsiteClient({
   };
 
   const scrollToSection = (id: (typeof SECTION_IDS)[number]) => {
+    setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
