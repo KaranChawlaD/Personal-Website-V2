@@ -33,9 +33,15 @@ function spriteWidthAtHeight(heightPx: number) {
 const SPRITE_WIDTH = spriteWidthAtHeight(DISPLAY_HEIGHT.default);
 const SPRITE_WIDTH_SM = spriteWidthAtHeight(DISPLAY_HEIGHT.sm);
 
-function translateForProgress(progress: number, spriteWidth: number) {
-  const start = -1.2 * spriteWidth;
-  const end = window.innerWidth + 1.2 * spriteWidth;
+function translateForProgress(
+  progress: number,
+  spriteWidth: number,
+  laneLeft: number,
+  viewportWidth: number
+) {
+  const offscreen = 1.2 * spriteWidth;
+  const start = -laneLeft - offscreen;
+  const end = viewportWidth - laneLeft + offscreen;
   return start + progress * (end - start);
 }
 
@@ -101,6 +107,7 @@ export function RobotDriveAnimation() {
 
   const { speedMultiplier, onSpeedUp, onReset } = ctx;
   const atMaxSpeed = speedMultiplier >= MAX_SPEED_MULTIPLIER;
+  const laneRef = useRef<HTMLDivElement>(null);
   const motionRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
   const speedRef = useRef(1);
@@ -113,9 +120,26 @@ export function RobotDriveAnimation() {
     applyFramePlaybackRate(motion, speedMultiplier);
   }, [speedMultiplier]);
 
+  useLayoutEffect(() => {
+    const motion = motionRef.current;
+    const lane = laneRef.current;
+    if (!motion || !lane) return;
+
+    const spriteWidth = motion.offsetWidth || SPRITE_WIDTH;
+    const laneLeft = lane.getBoundingClientRect().left;
+    const x = translateForProgress(
+      progressRef.current,
+      spriteWidth,
+      laneLeft,
+      document.documentElement.clientWidth
+    );
+    motion.style.transform = `translateX(${x}px)`;
+  }, []);
+
   useEffect(() => {
     const motion = motionRef.current;
-    if (!motion) return;
+    const lane = laneRef.current;
+    if (!motion || !lane) return;
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -130,10 +154,19 @@ export function RobotDriveAnimation() {
       last = now;
 
       const lapMs = LAP_DURATION_MS / speedRef.current;
-      progressRef.current = (progressRef.current + dt / lapMs) % 1;
+      progressRef.current += dt / lapMs;
+      if (progressRef.current >= 1) {
+        progressRef.current -= Math.floor(progressRef.current);
+      }
 
       const spriteWidth = motion.offsetWidth || SPRITE_WIDTH;
-      const x = translateForProgress(progressRef.current, spriteWidth);
+      const laneLeft = lane.getBoundingClientRect().left;
+      const x = translateForProgress(
+        progressRef.current,
+        spriteWidth,
+        laneLeft,
+        document.documentElement.clientWidth
+      );
       motion.style.transform = `translateX(${x}px)`;
 
       raf = requestAnimationFrame(tick);
@@ -165,7 +198,10 @@ export function RobotDriveAnimation() {
   } as React.CSSProperties;
 
   return (
-    <div className="robot-drive-lane relative z-[1] mt-8 h-20 w-full shrink-0 overflow-visible sm:mt-10 sm:h-28">
+    <div
+      ref={laneRef}
+      className="robot-drive-lane relative z-[1] mt-8 h-20 w-full shrink-0 overflow-visible sm:mt-10 sm:h-28"
+    >
       <div
         ref={motionRef}
         className="robot-drive-motion relative h-full"
