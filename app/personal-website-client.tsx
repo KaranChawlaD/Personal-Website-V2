@@ -415,8 +415,7 @@ export function PersonalWebsiteClient({
                 Projects
               </h2>
               <p className="mt-3 text-muted-foreground">
-                Selected work from hackathons, competitions, and product-style
-                builds.
+                Selected work from hackathons, competitions, and personal projects.
               </p>
             </div>
 
