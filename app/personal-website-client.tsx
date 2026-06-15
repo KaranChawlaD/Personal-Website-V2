@@ -58,6 +58,16 @@ const siteGreenSplotches = [
   "absolute -right-28 top-[92%] h-64 w-72 rounded-full bg-accent/30 blur-3xl dark:bg-accent/24",
 ] as const;
 
+const siteGreenSplotchTimings = [
+  { duration: "4.5s", delay: "0s" },
+  { duration: "5.5s", delay: "-1.2s" },
+  { duration: "4s", delay: "-2.2s" },
+  { duration: "5s", delay: "-0.7s" },
+  { duration: "6s", delay: "-2.8s" },
+  { duration: "4.8s", delay: "-1.7s" },
+  { duration: "4.2s", delay: "-2.6s" },
+] as const;
+
 export function PersonalWebsiteClient({
   // skills,
   projects,
@@ -209,7 +219,16 @@ export function PersonalWebsiteClient({
         aria-hidden
       >
         {siteGreenSplotches.map((className, index) => (
-          <div key={index} className={className} />
+          <div
+            key={index}
+            className={cn("site-green-splotch", className)}
+            style={
+              {
+                "--splotch-duration": siteGreenSplotchTimings[index].duration,
+                "--splotch-delay": siteGreenSplotchTimings[index].delay,
+              } as React.CSSProperties
+            }
+          />
         ))}
       </div>
       <header
