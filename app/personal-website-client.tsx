@@ -297,15 +297,15 @@ export function PersonalWebsiteClient({
                   Karan Chawla
                 </h1>
                 <p className="max-w-xl text-lg font-medium leading-snug text-foreground/90 sm:text-xl">
-                  Building autonomous robots at the intersection of hardware and software engineering.
+                  Building autonomous robots at the intersection of hardware and software.
                 </p>
                 <p className="text-base font-bold text-muted-foreground sm:text-lg">
                   Engineering Science @{" "}
                   <a className="text-foreground font-bold hover:underline" href="https://www.utoronto.ca/" target="_blank" rel="noopener noreferrer">University of Toronto</a>
                 </p>
                 <p className="max-w-prose text-base leading-relaxed text-foreground/85">
-                  Hey I&apos;m Karan! I&apos;m interested in robotics, computing, and
-                  how technology solves real-world problems. Check out what I&apos;ve been up to!
+                  Hey I&apos;m Karan! With a large interest in robotics and computer science, I love discovering how technology can solve real-world problems.
+ Check out what I&apos;ve been up to!
                 </p>
                 <div className="flex flex-wrap justify-center gap-3 pt-2 sm:justify-start">
                   <Button asChild size="lg" className="rounded-full px-6">
