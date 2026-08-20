@@ -1,20 +1,20 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Nunito_Sans, Outfit } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const nunitoSans = Nunito_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-nunito-sans",
-  display: "swap", // Prevents invisible text during font load
-  preload: true, // Preloads the font for better performance
+  variable: "--font-inter",
+  display: "swap",
+  preload: true,
 });
 
-const outfit = Outfit({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-source-serif",
   display: "swap",
 });
 
@@ -302,10 +302,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunitoSans.variable} ${outfit.variable}`}
+      className={`${inter.variable} ${sourceSerif.variable}`}
       suppressHydrationWarning
     >
-      <body className={`${nunitoSans.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <Script
           id="theme-script"
           strategy="beforeInteractive"
