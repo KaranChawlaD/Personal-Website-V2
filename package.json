@@ -7,7 +7,10 @@
     "build": "bun --bun next build",
     "start": "bun --bun next start",
     "lint": "bun --bun next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "resume:build": "node scripts/resume.mjs",
+    "resume:watch": "node scripts/resume.mjs --watch",
+    "resume:test": "node --test scripts/resume.test.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",

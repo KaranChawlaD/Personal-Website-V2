@@ -1,0 +1,53 @@
+name: Build resume PDF
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "public/Karan_Chawla_Resume.tex"
+      - "scripts/resume.mjs"
+      - "scripts/resume.test.mjs"
+      - ".github/workflows/resume.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: resume-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Test resume tooling
+        run: node --test scripts/resume.test.mjs
+
+      - name: Compile resume
+        run: node scripts/resume.mjs
+
+      - name: Commit updated PDF
+        if: startsWith(github.ref, 'refs/heads/')
+        env:
+          BRANCH: ${{ github.ref_name }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          git add -- public/Karan_Chawla_Resume.pdf
+          if git diff --cached --quiet; then
+            echo "Resume PDF is already up to date."
+            exit 0
+          fi
+          git commit -m "chore: regenerate resume PDF"
+          git push origin "HEAD:refs/heads/$BRANCH"
