@@ -92,33 +92,33 @@
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{0pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\linewidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-8pt}
+    \end{tabular*}\vspace{-5pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
     \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-8pt}
+    \end{tabular*}\vspace{-5pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
-    \end{tabular*}\vspace{-8pt}
+    \end{tabular*}\vspace{-5pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, topsep=4pt, itemsep=3pt, parsep=0pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, rightmargin=0in, topsep=3pt, itemsep=2pt, parsep=0pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
 
 %-------------------------------------------
@@ -128,11 +128,12 @@
 \begin{document}
 
 \begin{center}
-    \textbf{\Huge Karan Chawla Dora} \\ \vspace{1pt}
-    \small Toronto, ON $|$ 613-462-4971 $|$ \href{mailto:karan.chawlad@gmail.com}{karan.chawlad@gmail.com} \\ \vspace{1pt}
-    \small \href{https://linkedin.com/in/karan-chawla-dora/}{linkedin.com/in/karan-chawla-dora} $|$
-    \href{https://github.com/KaranChawlaD}{github.com/KaranChawlaD} $|$
-    \href{https://www.karan-chawla.com/}{karan-chawla.com}
+    \textbf{\Huge \scshape Karan Chawla Dora} \\ \vspace{1pt}
+    \small \href{mailto:karan.chawlad@gmail.com}{karan.chawlad@gmail.com} $|$
+    (613) 462-4971 $|$
+    \href{https://linkedin.com/in/karan-chawla-dora/}{LinkedIn \ExternalLink} $|$
+    \href{https://github.com/KaranChawlaD}{GitHub \ExternalLink} $|$
+    \href{https://www.karan-chawla.com/}{Portfolio \ExternalLink}
 \end{center}
 
  %-----------EDUCATION-----------
@@ -142,7 +143,7 @@
       {University of Toronto}{Toronto, ON}
       {Bachelor of Applied Science | Engineering Science (cGPA: \textbf{3.95/4.0})}{2025 -- 2030}
       \vspace{2pt}
-      \item \small{\textit{\textbf{Research Interests:} control systems, robot autonomy, state estimation}}
+      \item \small{\textit{\textbf{Interests:} autonomous driving, state estimation, motion planning, control systems}}
   \resumeSubHeadingListEnd
 %-------------------------------------------
 
@@ -151,24 +152,24 @@
 \section{\textbf{Experience}}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {\href{https://www.autodrive.utoronto.ca/}{aUToronto | SAE AutoDrive \ExternalLink}}{Toronto, ON}
+      {\href{https://www.autodrive.utoronto.ca/}{aUToronto | Toronto Autonomous Vehicle Team \ExternalLink}}{Toronto, ON}
       {3D Mapping Lead (promoted)}{Jul. 2026 -- Present}
       \resumeItemListStart
-        \resumeItem{Lead a team of two building SLAM pipelines; generated HD LiDAR maps of UTIAS by configuring and tuning LIO-SAM, integrating GPS via navsat, and converting raw IMU data to physical units.}
-        \resumeItem{Develop dynamic-object removal workflows and extend mapping to public-road ROS bag recordings.}
+        \resumeItem{Produced high-definition maps of UTIAS by leading a \textbf{2-person team} building LiDAR SLAM pipelines with LIO-SAM and integrating GPS and inertial measurement unit (IMU) data.}
+        \resumeItem{Extend autonomous-vehicle mapping to public-road driving logs, developing dynamic-object removal workflows to filter moving objects from LiDAR scans and preserve static landmarks for localization.}
       \resumeItemListEnd
       \resumeSubSubheading{State Estimation Developer}{Sep. 2025 -- Jul. 2026}
       \resumeItemListStart
-        \resumeItem{Contributed Python validation scripts to sweep Iterated Extended Kalman Filter (IEKF) noise parameters and lane-update settings, comparing trajectories against ground-truth GPS under GPS attenuation.}
-        \resumeItem{Tested LiDAR localization pipelines on ROS 2 bags, contributing to the team's \textbf{1st-place localization and overall finishes} at SAE AutoDrive Challenge R2Y5.}
+        \resumeItem{Enabled lane localization during GPS dropouts by developing a C++ pipeline with an Iterated Extended Kalman Filter (IEKF), processing \textbf{100+ lane observations per 5 m} to estimate vehicle position.}
+        \resumeItem{Helped the team earn \textbf{1st place in localization and overall} at SAE AutoDrive Challenge R2Y5 by validating LiDAR and lane localization against ground-truth GPS using Python, ROS 2 bag analysis, and CI workflows.}
       \resumeItemListEnd
     \resumeSubheading
-      {\href{https://www.syrc.ca/}{FIRST Robotics Competition \ExternalLink}}{Jul. 2021 -- Jun. 2025}
-      {Robotics Team Captain \& Software Development Lead}{Ottawa, ON}
+      {\href{https://www.syrc.ca/}{FIRST Robotics Competition \ExternalLink}}{Ottawa, ON}
+      {Robotics Team Captain \& Software Development Lead}{Jul. 2021 -- Jun. 2025}
       \resumeItemListStart
-        \resumeItem{Led a 90+ member team through design, manufacturing, and software development; the team qualified for the World Championship and earned two Provincial Finalist finishes.}
-        \resumeItem{Built C++ autonomous routines using AprilTag vision, wheel odometry, and trajectory generation; team average autonomous points rose approximately 3x from the first competition to provincials.}
-        \resumeItem{Tuned feedforward and PID feedback controllers to improve robot mechanism precision.}
+        \resumeItem{Helped raise average autonomous scoring by approximately \textbf{3x} from the first competition to provincials by building C++ routines combining AprilTag computer vision, wheel odometry, and trajectory generation.}
+        \resumeItem{Improved robot mechanism precision by tuning PID feedback and feedforward controllers for autonomous and driver-controlled operation, integrating control software with competition robot hardware.}
+        \resumeItem{Helped earn \textbf{World Championship qualification} and \textbf{2 Provincial Finalist finishes} by leading a \textbf{90+ member team} through robot design, manufacturing, and software development.}
     \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -177,28 +178,30 @@
 \section{\textbf{Research Experience}}
     \resumeSubHeadingListStart
       \resumeSubheading
-          {\href{https://asrl.utias.utoronto.ca/~tdb/}{Autonomous Space Robotics Lab (ASRL) \ExternalLink}}{May 2026 -- Present}
-          {Robotics Researcher | Supervisor: Tim Barfoot}{UTIAS}
+          {\href{https://asrl.utias.utoronto.ca/~tdb/}{Autonomous Space Robotics Lab (ASRL) \ExternalLink}}{Toronto, ON}
+          {Robotics Researcher | UTIAS | Supervisor: Tim Barfoot}{May 2026 -- Present}
           \resumeItemListStart
-            \resumeItem{Deployed Doodle Labs mesh radios on four AgileX Hunter robots and a base station using OpenWrt and custom firewall rules, replacing centralized Wi-Fi with a decentralized B.A.T.M.A.N. network.}
-            \resumeItem{Verified 400+ m line-of-sight connectivity, non-line-of-sight operation, and recovery from node dropouts through field testing, overcoming the prior network's 5 m robot-separation limit.}
-            \resumeItem{Built a ROS 2 node publishing network telemetry and battery health for planned dataset collection.}
+            \resumeItem{Enabled \textbf{400+ m line-of-sight connectivity}, overcoming a prior \textbf{5 m robot-separation limit}, by replacing centralized Wi-Fi with an OpenWrt mesh network across \textbf{4 robots and 1 base station}.}
+            \resumeItem{Validated multi-robot network reliability through field tests of non-line-of-sight communication and recovery from disconnected nodes, verifying operation beyond centralized Wi-Fi coverage.}
+            \resumeItem{Enabled monitoring for planned multi-robot dataset collection by building a ROS 2 node that publishes network telemetry and battery health, providing visibility into robot communication and power status.}
           \resumeItemListEnd
         
-      \resumeProjectHeading{\href{https://ecs.confex.com/ecs/prime2024/meetingapp.cgi/Paper/193950}{\textbf{Bruce Lab | University of Ottawa \ExternalLink}} $|$ \emph{Research Assistant}}{Aug. 2024}
+      \resumeSubheading
+          {\href{https://ecs.confex.com/ecs/prime2024/meetingapp.cgi/Paper/193950}{Bruce Lab | University of Ottawa \ExternalLink}}{Ottawa, ON}
+          {Research Assistant}{Aug. 2024}
       \resumeItemListStart
-        \resumeItem{Implemented C++ PID controllers for platinum-nickel electrodeposition, reducing transient time by approximately 80\% and steady-state error by approximately 40\% versus the baseline.}
-        \resumeItem{Automated experiment execution, sensor logging, and data curation with a Python GUI, replacing manual component operation and reducing experiment completion time by approximately 33\%.}
-        \resumeItem{Refined an Arduino-based potentiostat circuit and control workflow, expanding the operating voltage range by approximately 5x.}
+        \resumeItem{Reduced system response time by approximately \textbf{80\%} and steady-state error by approximately \textbf{40\%} versus the baseline by implementing C++ PID controllers for fuel-cell electrodeposition experiments.}
+        \resumeItem{Cut experiment completion time by approximately \textbf{33\%} by building a Python GUI to automate equipment operation, sensor logging, and data preparation, replacing manual steps in the research workflow.}
+        \resumeItem{Expanded the operating voltage range by approximately \textbf{5x} by refining an Arduino-based electrochemical measurement circuit and its control workflow for fuel-cell research experiments.}
       \resumeItemListEnd
     \resumeSubHeadingListEnd
 \section{\textbf{Projects}}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\href{https://q-learning-trainer.fly.dev/}{\textbf{Q-Learning Trainer \ExternalLink}} $|$ \emph{Python, FastAPI, NumPy, JavaScript}}{June 2026}
+          {\href{https://q-learning-trainer.fly.dev/}{\textbf{Q-Learning Trainer \ExternalLink}} $|$ \emph{Python, FastAPI, NumPy, JavaScript}}{Jun. 2026}
           \resumeItemListStart
-            \resumeItem{Built a tabular Q-learning simulator with custom maps and real-time WebSocket visualization, enabling interactive training, hyperparameter experimentation, and model evaluation.}
-            \resumeItem{Deployed the dashboard to Fly.io using Docker and session isolation; added pytest regression tests for map parsing, reachability, and policy evaluation.}
+            \resumeItem{Enabled reinforcement learning experiments for grid navigation by building a Python/FastAPI Q-learning simulator with custom maps, adjustable training parameters, and live WebSocket visualization.}
+            \resumeItem{Delivered a publicly accessible training dashboard by deploying with Docker on Fly.io, isolating user sessions, and adding pytest regression tests for map loading, path reachability, and model evaluation.}
           \resumeItemListEnd
         \resumeSubHeadingListEnd
 %
@@ -206,9 +209,9 @@
 \section{\textbf{Technical Skills}}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: Python, C++, C, Bash, Java, JavaScript, TypeScript} \\
-     \textbf{Robotics \& Control}{: ROS 2, SLAM, LIO-SAM, LiDAR mapping, state estimation, sensor fusion, PID, AprilTags} \\
-     \textbf{Tools \& Systems}{: Linux, Git, Docker, OpenWrt, mesh networking, Arduino, NumPy, pandas, pytest}
+     \textbf{Languages}{: C++, Python, C, Bash, Java, JavaScript, TypeScript} \\
+     \textbf{Autonomy \& Control}{: State estimation, sensor fusion, SLAM, IEKF, computer vision, trajectory generation, PID control} \\
+     \textbf{Robotics \& Tools}{: ROS 2, LiDAR, GPS/IMU, Linux, Git, CI testing, Docker, NumPy, pandas, pytest, Arduino}
     }}
  \end{itemize}
 
